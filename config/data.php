@@ -166,6 +166,24 @@ $linux_distros = [
         'score_server' => 3,
         'score_old_pc' => 5,
         'score_security' => 6
+    ],
+    [
+        'id' => 10,
+        'name' => 'Zorin OS',
+        'slug' => 'zorin-os',
+        'short_desc' => 'Windows ve macOS kullanıcılarının Linux\'a en kolay ve görsel olarak en pürüzsüz geçiş yapması için tasarlanmış estetik sistem.',
+        'full_desc' => 'Zorin OS, Windows kullanıcılarının yabancılık çekmemesi için özel olarak tasarlanmış harika bir "Görünüm Değiştirici" ile gelir. Tek tıklamayla Windows 11 veya macOS arayüzüne geçebilirsiniz. Cihazınızda çok şık durur. Ubuntu tabanlı olduğu için çok stabil çalışır ve Windows (.exe) uygulamalarını (WINE aracılığıyla) destekleyici araçları kutudan çıkar çıkmaz barındırır.',
+        'base_os' => 'Ubuntu',
+        'package_manager' => 'APT / Flatpak',
+        'difficulty' => 'Beginner',
+        'desktop_environment' => 'GNOME (Zorin Desktop)',
+        'ram_usage' => '1.5GB - 2GB',
+        'score_beginner' => 10,
+        'score_gaming' => 7,
+        'score_dev' => 7,
+        'score_server' => 2,
+        'score_old_pc' => 6,
+        'score_security' => 4
     ]
 ];
 
