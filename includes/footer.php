@@ -16,7 +16,8 @@
         </div>
         
         <div style="font-size:0.85rem; color:var(--text-muted); letter-spacing:1px;">
-            &copy; <?= date("Y") ?> Linux Hub - Özgür Yazılım İnsanı Özgür Kılar.
+            &copy; <?= date("Y") ?> Linux Hub - Özgür Yazılım İnsanı Özgür Kılar. <br><br>
+            Bu bir <a href="https://inexxinteractive.com" target="_blank" style="color:var(--primary-color); text-decoration:none; font-weight:bold;">INEXX INTERACTIVE</a> ürünüdür.
         </div>
     </div>
 </footer>

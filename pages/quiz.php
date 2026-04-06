@@ -33,34 +33,41 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_quiz'])) {
         
         // Tecrübeye göre ana katsayı
         if($experience == 'beginner') {
-            $point += ($d['score_beginner'] * 4); // 4x dominant ağırlık
+            $point += ($d['score_beginner'] * 5); // Acemi arıyorsa direkt Mint vb.
         } elseif($experience == 'intermediate') {
-            $point += ($d['score_beginner']); 
-            $point += ($d['score_dev'] * 0.5); 
-        } elseif($experience == 'advanced') {
-            $point -= ($d['score_beginner']); // Yeni başlayan istemez
+            $point += ($d['score_beginner'] * 2); 
             $point += ($d['score_dev'] * 2); 
-            $point += ($d['score_server'] * 2); 
-            // Arch gibi advanced distrolarda score_beginner 1, dev 10 olduğu için Arch tavan yapar.
+        } elseif($experience == 'advanced') {
+            $point -= ($d['score_beginner'] * 5); // Yeni başlayan sistemlerinden nefret eder (Arch yukarı)
+            $point += ($d['score_dev'] * 3); 
+            $point += ($d['score_server'] * 3); 
         }
         
-        // Amaca Göre
+        // Amaca Göre Keskin Ayrımlar (Süzgeçleme)
         if($purpose == 'gaming') {
-            $point += ($d['score_gaming'] * 4);
+            $point += ($d['score_gaming'] * 20); // PopOS gibi oyun devleri uçar
+            $point -= ($d['score_server'] * 10); // Sunucular oyunlardan uzaklaştırılır
         } elseif($purpose == 'dev') {
-            $point += ($d['score_dev'] * 4);
+            $point += ($d['score_dev'] * 10);
+            $point -= ($d['score_beginner'] * 2);
         } elseif($purpose == 'server') {
-            $point += ($d['score_server'] * 4);
+            // SUNUCU SEÇİLDİYSE MASAÜSTÜ ODAKLI SİSTEMLERİ YOK ET
+            $point += ($d['score_server'] * 25);
+            $point -= ($d['score_beginner'] * 8); // Ana akım masaüstüler (Mint, Ubuntu) elenir
+            $point -= ($d['score_gaming'] * 5); // Oyun sistemleri sunucu olmaz
         } elseif($purpose == 'security') {
-            $point += ($d['score_security'] * 4);
+            $point += ($d['score_security'] * 25); // Kali anında liderliğe oturur
+            $point -= ($d['score_beginner'] * 5);
         } elseif($purpose == 'general') {
-            $point += ($d['score_beginner'] * 2);
+            $point += ($d['score_beginner'] * 10);
+            $point -= ($d['score_server'] * 10); // Genel kullanımda saf sunucuları siliyoruz
         }
         
-        // Donanıma Göre
+        // Donanıma Göre Filitre
         if($hardware == 'old') {
-            $point += ($d['score_old_pc'] * 4);
-            $point -= ($d['score_gaming'] * 2); // Eski makinada gaming penalty
+            $point += ($d['score_old_pc'] * 25); // Lubuntu vb uçar
+            $point -= ($d['score_gaming'] * 10); // Eski pclerde oyun zaten olmaz
+            $point -= ($d['score_dev'] * 5); // Ağır IDE'ler de kasacaktır
         }
         
         $scores[$d['id']] = $point;
