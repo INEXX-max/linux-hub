@@ -44,11 +44,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_quiz'])) {
     $show_results = true;
     
     if(isLoggedIn() && count($result_distros) > 0) {
-        $_SESSION['last_quiz_result'] = [
-            'recommended_distro_id' => $result_distros[0]['id'],
-            'answers_json' => json_encode($answers),
-            'created_at' => date('Y-m-d H:i:s')
-        ];
+        saveQuizResult($_SESSION['user_id'], $result_distros[0]['id'], json_encode($answers));
     }
 }
 ?>

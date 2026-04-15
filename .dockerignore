@@ -1,5 +1,4 @@
 .git
 .gitignore
-*.md
-.gemini/
-database/
+README.md
+database/*.sqlite

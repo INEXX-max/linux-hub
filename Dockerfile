@@ -1,23 +1,30 @@
 FROM php:8.2-apache
 
-# NEXOS Platform — Docker Build Configuration
-# Cache-bust: v2.0-nexos
+# NEXOS Platform — Docker Build v3.0
+# SQLite support + mod_rewrite
 
-# mod_rewrite modülünü aktif ediyoruz
+# Apache mod_rewrite
 RUN a2enmod rewrite
 
-# Çalışma dizinini ayarlayalım
+# SQLite PDO extension (required for user database)
+RUN apt-get update && apt-get install -y libsqlite3-dev \
+    && docker-php-ext-install pdo_sqlite \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /var/www/html/
 
-# Eski dosyaları temizleyelim (cache sorununu çözmek için)
+# Clean old files
 RUN rm -rf /var/www/html/*
 
-# Tüm projeyi kopyalayalım
+# Copy project
 COPY . /var/www/html/
 
-# Klasör yetkilerini sunucunun okuyabileceği hale getirelim
-RUN chown -R www-data:www-data /var/www/html/ \
-    && chmod -R 755 /var/www/html/
+# Create database directory with write permissions
+RUN mkdir -p /var/www/html/database
 
-# Render.com'un beklentisine uygun olarak varsayılan Apache portunu (80) dışa açıyoruz
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html/ \
+    && chmod -R 755 /var/www/html/ \
+    && chmod -R 777 /var/www/html/database
+
 EXPOSE 80

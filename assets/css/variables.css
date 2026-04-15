@@ -1,15 +1,15 @@
 /* ============================================
    NEXOS Design System — Variables & Tokens
-   Premium Dark Theme for Linux Platform
+   Pure Black Premium Theme
    ============================================ */
 
 :root {
-  /* ── Core Backgrounds ── */
-  --nx-black:       #06080d;
-  --nx-dark:        #0a0e1a;
-  --nx-surface:     #111827;
-  --nx-surface-2:   #1a2035;
-  --nx-surface-3:   #232a3e;
+  /* ── Core Backgrounds — PURE BLACK ── */
+  --nx-black:       #000000;
+  --nx-dark:        #000000;
+  --nx-surface:     #0a0a0a;
+  --nx-surface-2:   #111111;
+  --nx-surface-3:   #1a1a1a;
 
   /* ── Text ── */
   --nx-text:        #f0f2f5;
@@ -55,18 +55,18 @@
   --nx-border-blue: rgba(79, 143, 255, 0.30);
 
   /* ── Glass / Backdrop ── */
-  --nx-glass:       rgba(17, 24, 39, 0.80);
-  --nx-glass-heavy: rgba(10, 14, 26, 0.92);
-  --nx-glass-light: rgba(26, 32, 53, 0.60);
+  --nx-glass:       rgba(10, 10, 10, 0.85);
+  --nx-glass-heavy: rgba(0, 0, 0, 0.95);
+  --nx-glass-light: rgba(15, 15, 15, 0.70);
 
   /* ── Gradients ── */
-  --nx-gradient-hero:     linear-gradient(160deg, #06080d 0%, #0f1629 40%, #0e0a1f 70%, #0a0e1a 100%);
-  --nx-gradient-section:  linear-gradient(180deg, #0a0e1a 0%, #06080d 100%);
+  --nx-gradient-hero:     linear-gradient(160deg, #000000 0%, #050510 40%, #0a0010 70%, #000000 100%);
+  --nx-gradient-section:  linear-gradient(180deg, #000000 0%, #050505 100%);
   --nx-gradient-card:     linear-gradient(135deg, rgba(79,143,255,0.04) 0%, rgba(139,92,246,0.04) 100%);
   --nx-gradient-blue:     linear-gradient(135deg, #4f8fff 0%, #22d3ee 100%);
   --nx-gradient-purple:   linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
   --nx-gradient-green:    linear-gradient(135deg, #10b981 0%, #059669 100%);
-  --nx-gradient-dark:     linear-gradient(135deg, #111827 0%, #1a2035 100%);
+  --nx-gradient-dark:     linear-gradient(135deg, #0a0a0a 0%, #111111 100%);
 
   /* ── Glow Effects ── */
   --nx-glow-blue:   0 0 30px rgba(79, 143, 255, 0.15), 0 0 60px rgba(79, 143, 255, 0.05);
@@ -74,12 +74,12 @@
   --nx-glow-cyan:   0 0 30px rgba(34, 211, 238, 0.15), 0 0 60px rgba(34, 211, 238, 0.05);
 
   /* ── Shadows ── */
-  --nx-shadow-sm:   0 2px 8px rgba(0, 0, 0, 0.3);
-  --nx-shadow-md:   0 4px 16px rgba(0, 0, 0, 0.4);
-  --nx-shadow-lg:   0 8px 32px rgba(0, 0, 0, 0.5);
-  --nx-shadow-xl:   0 16px 48px rgba(0, 0, 0, 0.6);
-  --nx-shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--nx-border);
-  --nx-shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--nx-border-light);
+  --nx-shadow-sm:   0 2px 8px rgba(0, 0, 0, 0.5);
+  --nx-shadow-md:   0 4px 16px rgba(0, 0, 0, 0.6);
+  --nx-shadow-lg:   0 8px 32px rgba(0, 0, 0, 0.7);
+  --nx-shadow-xl:   0 16px 48px rgba(0, 0, 0, 0.8);
+  --nx-shadow-card: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--nx-border);
+  --nx-shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--nx-border-light);
 
   /* ── Typography ── */
   --nx-font:        'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -98,19 +98,19 @@
   --nx-fs-hero:     clamp(2.8rem, 5vw, 4.5rem);
 
   /* ── Spacing ── */
-  --nx-sp-1:  0.25rem;   /* 4px */
-  --nx-sp-2:  0.5rem;    /* 8px */
-  --nx-sp-3:  0.75rem;   /* 12px */
-  --nx-sp-4:  1rem;      /* 16px */
-  --nx-sp-5:  1.25rem;   /* 20px */
-  --nx-sp-6:  1.5rem;    /* 24px */
-  --nx-sp-8:  2rem;      /* 32px */
-  --nx-sp-10: 2.5rem;    /* 40px */
-  --nx-sp-12: 3rem;      /* 48px */
-  --nx-sp-16: 4rem;      /* 64px */
-  --nx-sp-20: 5rem;      /* 80px */
-  --nx-sp-24: 6rem;      /* 96px */
-  --nx-sp-32: 8rem;      /* 128px */
+  --nx-sp-1:  0.25rem;
+  --nx-sp-2:  0.5rem;
+  --nx-sp-3:  0.75rem;
+  --nx-sp-4:  1rem;
+  --nx-sp-5:  1.25rem;
+  --nx-sp-6:  1.5rem;
+  --nx-sp-8:  2rem;
+  --nx-sp-10: 2.5rem;
+  --nx-sp-12: 3rem;
+  --nx-sp-16: 4rem;
+  --nx-sp-20: 5rem;
+  --nx-sp-24: 6rem;
+  --nx-sp-32: 8rem;
 
   /* ── Border Radius ── */
   --nx-radius-xs:   4px;
@@ -130,7 +130,7 @@
   --nx-t-slow:      0.5s var(--nx-ease);
   --nx-t-spring:    0.4s var(--nx-ease-spring);
 
-  /* ── Z-Index Layers ── */
+  /* ── Z-Index ── */
   --nx-z-base:      1;
   --nx-z-dropdown:  100;
   --nx-z-sticky:    200;
@@ -143,24 +143,4 @@
   --nx-container:   1280px;
   --nx-container-sm: 960px;
   --nx-container-lg: 1440px;
-
-  /* ── Legacy compatibility (maps to new tokens) ── */
-  --bg-color:       var(--nx-dark);
-  --surface-color:  var(--nx-surface);
-  --surface-light:  var(--nx-surface-2);
-  --primary-color:  var(--nx-blue);
-  --primary-hover:  var(--nx-blue-hover);
-  --accent-color:   var(--nx-green);
-  --accent-hover:   #059669;
-  --text-main:      var(--nx-text);
-  --text-muted:     var(--nx-text-muted);
-  --border-color:   var(--nx-border);
-  --glass-bg:       var(--nx-glass);
-  --font-main:      var(--nx-font);
-  --font-mono:      var(--nx-font-mono);
-  --transition-fast:   var(--nx-t-fast);
-  --transition-normal: var(--nx-t-normal);
-  --radius-sm:      var(--nx-radius-sm);
-  --radius-md:      var(--nx-radius-md);
-  --radius-lg:      var(--nx-radius-xl);
 }

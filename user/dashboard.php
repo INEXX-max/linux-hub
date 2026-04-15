@@ -1,29 +1,34 @@
 <?php
-// user/dashboard.php — NEXOS User Dashboard
+// user/dashboard.php — NEXOS Dashboard with Real SQLite Data
 require_once 'includes/header.php';
 
 if(!isLoggedIn()){
-    setFlashMessage('warning', 'Dashboard alanına erişmek için giriş yapmalısınız.');
+    setFlashMessage('warning', 'Dashboard icin giris yapin.');
     redirect('index.php?page=login');
 }
 
 global $linux_distros;
+
+// Gercek DB favorileri
+$favIds = getUserFavorites($_SESSION['user_id']);
 $favorites = [];
-if(isset($_SESSION['favorites'])) {
-    $favs_reversed = array_reverse($_SESSION['favorites']);
-    foreach($favs_reversed as $fav_id) {
-        foreach($linux_distros as $d) {
-            if($d['id'] == $fav_id) { $favorites[] = $d; }
-        }
+foreach($favIds as $fid) {
+    foreach($linux_distros as $d) {
+        if($d['id'] == $fid) { $favorites[] = $d; }
     }
 }
 
+// Gercek DB quiz sonucu
 $last_quiz = null;
-if(isset($_SESSION['last_quiz_result'])) {
-    $res = $_SESSION['last_quiz_result'];
+$quizResult = getLastQuizResult($_SESSION['user_id']);
+if($quizResult) {
     foreach($linux_distros as $d) {
-        if($d['id'] == $res['recommended_distro_id']) {
-            $last_quiz = ['created_at' => $res['created_at'], 'distro_name' => $d['name'], 'distro_slug' => $d['slug']];
+        if($d['id'] == $quizResult['recommended_distro_id']) {
+            $last_quiz = [
+                'created_at' => $quizResult['created_at'],
+                'distro_name' => $d['name'],
+                'distro_slug' => $d['slug']
+            ];
             break;
         }
     }
@@ -36,14 +41,14 @@ if(isset($_SESSION['last_quiz_result'])) {
         <div class="nx-dash-sidebar-user">
             <div class="nx-dash-avatar"><i class="fa-solid fa-user-astronaut"></i></div>
             <h4><?= htmlspecialchars($_SESSION['username']) ?></h4>
-            <p>NEXOS Üyesi</p>
+            <p style="font-size:var(--nx-fs-xs); color:var(--nx-text-muted);"><?= htmlspecialchars($_SESSION['email'] ?? '') ?></p>
         </div>
         <ul class="nx-dash-nav">
-            <li><a href="index.php?page=dashboard" class="active"><i class="fa-solid fa-house"></i> Genel Bakış</a></li>
-            <li><a href="index.php?page=distros"><i class="fa-solid fa-th-large"></i> Dağıtımlar</a></li>
+            <li><a href="index.php?page=dashboard" class="active"><i class="fa-solid fa-house"></i> Genel Bakis</a></li>
+            <li><a href="index.php?page=distros"><i class="fa-solid fa-th-large"></i> Dagitimlar</a></li>
             <li><a href="index.php?page=quiz"><i class="fa-solid fa-wand-magic-sparkles"></i> Quiz</a></li>
-            <li><a href="index.php?page=what-is-linux"><i class="fa-solid fa-book-open"></i> Öğrenme</a></li>
-            <li><a href="index.php?page=logout"><i class="fa-solid fa-right-from-bracket"></i> Çıkış</a></li>
+            <li><a href="index.php?page=what-is-linux"><i class="fa-solid fa-book-open"></i> Ogrenme</a></li>
+            <li><a href="index.php?page=logout"><i class="fa-solid fa-right-from-bracket"></i> Cikis</a></li>
         </ul>
     </aside>
 
@@ -53,8 +58,8 @@ if(isset($_SESSION['last_quiz_result'])) {
         <div class="nx-dash-welcome reveal">
             <div class="nx-dash-welcome-icon"><i class="fa-solid fa-terminal"></i></div>
             <div>
-                <h2>Hoş Geldin, <?= htmlspecialchars($_SESSION['username']) ?></h2>
-                <p><i class="fa-solid fa-shield-halved"></i> NEXOS platformuna başarıyla bağlandın.</p>
+                <h2>Hos Geldin, <?= htmlspecialchars($_SESSION['username']) ?></h2>
+                <p><i class="fa-solid fa-shield-halved"></i> Platformda basariyla oturum acildi.</p>
             </div>
         </div>
 
@@ -64,7 +69,7 @@ if(isset($_SESSION['last_quiz_result'])) {
                 <div class="nx-dash-stat-icon nx-icon-box-blue"><i class="fa-solid fa-star"></i></div>
                 <div>
                     <div class="stat-value"><?= count($favorites) ?></div>
-                    <div class="stat-label">Favori Dağıtım</div>
+                    <div class="stat-label">Favori Dagitim</div>
                 </div>
             </div>
             <div class="nx-dash-stat-card">
@@ -78,18 +83,18 @@ if(isset($_SESSION['last_quiz_result'])) {
                 <div class="nx-dash-stat-icon nx-icon-box-purple"><i class="fa-solid fa-book-open"></i></div>
                 <div>
                     <div class="stat-value"><?= count($linux_distros) ?></div>
-                    <div class="stat-label">Keşfedilebilir Distro</div>
+                    <div class="stat-label">Kesfedilebilir Distro</div>
                 </div>
             </div>
         </div>
 
-        <!-- Two Column: Favorites + Quiz -->
+        <!-- Two Column -->
         <div style="display:grid; grid-template-columns:2fr 1fr; gap:var(--nx-sp-6);">
             <!-- Favorites -->
             <div>
                 <h3 class="text-cyan mb-4"><i class="fa-solid fa-star"></i> Koleksiyonum</h3>
                 <?php if(count($favorites) > 0): ?>
-                <div class="grid grid-auto-sm gap-4">
+                <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr)); gap:var(--nx-sp-4);">
                     <?php foreach($favorites as $fav): ?>
                     <div class="nx-card reveal" style="padding:var(--nx-sp-5);">
                         <div class="d-flex justify-between items-center mb-2">
@@ -102,10 +107,10 @@ if(isset($_SESSION['last_quiz_result'])) {
                     <?php endforeach; ?>
                 </div>
                 <?php else: ?>
-                <div class="nx-card text-center" style="padding:var(--nx-sp-10); background:rgba(0,0,0,0.2);">
+                <div class="nx-card text-center" style="padding:var(--nx-sp-10); background:rgba(255,255,255,0.02);">
                     <i class="fa-regular fa-folder-open mb-3" style="font-size:2.5rem; color:var(--nx-text-dim);"></i>
-                    <p class="text-muted">Henüz favori eklemediniz.</p>
-                    <a href="index.php?page=distros" class="btn-primary btn-sm mt-3">Dağıtımları Keşfet</a>
+                    <p class="text-muted">Henuz favori eklemediniz.</p>
+                    <a href="index.php?page=distros" class="btn-primary btn-sm mt-3">Dagitimlari Kesfet</a>
                 </div>
                 <?php endif; ?>
             </div>
@@ -117,47 +122,22 @@ if(isset($_SESSION['last_quiz_result'])) {
                 <div class="nx-card reveal" style="border:1px solid rgba(16,185,129,0.2); background:var(--nx-green-subtle);">
                     <div class="text-center mb-4">
                         <span class="text-muted" style="font-size:var(--nx-fs-xs);">
-                            <i class="fa-regular fa-clock"></i> <?= date('d M Y — H:i', strtotime($last_quiz['created_at'])) ?>
+                            <i class="fa-regular fa-clock"></i> <?= date('d M Y H:i', strtotime($last_quiz['created_at'])) ?>
                         </span>
                     </div>
-                    <h4 class="text-center text-green">Senin İçin En İyisi:</h4>
+                    <h4 class="text-center" style="color:var(--nx-green);">Senin Icin En Iyisi:</h4>
                     <div class="text-center mt-3 mb-5">
                         <strong style="font-size:var(--nx-fs-3xl); font-family:var(--nx-font-mono);"><?= htmlspecialchars($last_quiz['distro_name']) ?></strong>
                     </div>
-                    <a href="index.php?page=distro_detail&slug=<?= $last_quiz['distro_slug'] ?>" class="btn-highlight w-full" style="justify-content:center;">İncele</a>
-                    <div class="text-center mt-3">
-                        <a href="index.php?page=quiz" style="font-size:var(--nx-fs-xs); color:var(--nx-text-muted); text-decoration:underline;">Testi Tekrar Çöz</a>
-                    </div>
+                    <a href="index.php?page=distro_detail&slug=<?= $last_quiz['distro_slug'] ?>" class="btn-highlight w-full" style="justify-content:center;">Incele</a>
                 </div>
                 <?php else: ?>
-                <div class="nx-card text-center reveal" style="padding:var(--nx-sp-10); background:rgba(0,0,0,0.2);">
-                    <i class="fa-solid fa-vial-circle-check text-green mb-3" style="font-size:2.5rem;"></i>
-                    <p class="text-muted" style="font-size:var(--nx-fs-sm);">Quiz sonucunuz yok. Hemen deneyin!</p>
-                    <a href="index.php?page=quiz" class="btn-highlight btn-sm mt-3">Quiz'e Başla</a>
+                <div class="nx-card text-center reveal" style="padding:var(--nx-sp-10); background:rgba(255,255,255,0.02);">
+                    <i class="fa-solid fa-vial-circle-check mb-3" style="font-size:2.5rem; color:var(--nx-green);"></i>
+                    <p class="text-muted" style="font-size:var(--nx-fs-sm);">Quiz sonucunuz yok.</p>
+                    <a href="index.php?page=quiz" class="btn-highlight btn-sm mt-3">Quiz'e Basla</a>
                 </div>
                 <?php endif; ?>
-            </div>
-        </div>
-        
-        <!-- Recommended -->
-        <div class="mt-8 reveal">
-            <h3 class="text-purple mb-4"><i class="fa-solid fa-compass"></i> Önerilen İçerikler</h3>
-            <div class="grid grid-3 gap-4">
-                <a href="index.php?page=what-is-linux" class="nx-card-glow" style="padding:var(--nx-sp-5); text-decoration:none;">
-                    <div class="nx-icon-box nx-icon-box-blue mb-3" style="width:40px; height:40px;"><i class="fa-solid fa-book-open"></i></div>
-                    <h5 style="margin-bottom:var(--nx-sp-1);">Linux Nedir?</h5>
-                    <p class="text-muted mb-0" style="font-size:var(--nx-fs-xs);">Temel kavramları öğrenin.</p>
-                </a>
-                <a href="index.php?page=architecture" class="nx-card-glow" style="padding:var(--nx-sp-5); text-decoration:none;">
-                    <div class="nx-icon-box nx-icon-box-purple mb-3" style="width:40px; height:40px;"><i class="fa-solid fa-layer-group"></i></div>
-                    <h5 style="margin-bottom:var(--nx-sp-1);">Mimari</h5>
-                    <p class="text-muted mb-0" style="font-size:var(--nx-fs-xs);">Kernel, shell, dosya sistemi.</p>
-                </a>
-                <a href="index.php?page=use_cases" class="nx-card-glow" style="padding:var(--nx-sp-5); text-decoration:none;">
-                    <div class="nx-icon-box nx-icon-box-green mb-3" style="width:40px; height:40px;"><i class="fa-solid fa-compass"></i></div>
-                    <h5 style="margin-bottom:var(--nx-sp-1);">Kullanım Alanları</h5>
-                    <p class="text-muted mb-0" style="font-size:var(--nx-fs-xs);">Hangi senaryo size uygun?</p>
-                </a>
             </div>
         </div>
     </div>

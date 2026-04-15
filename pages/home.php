@@ -344,17 +344,17 @@ global $linux_distros;
     <div class="container">
         <div class="nx-cta-banner reveal">
             <h2 style="font-size:var(--nx-fs-3xl); margin-bottom:var(--nx-sp-4);">
-                Geleceği <span class="nx-text-gradient">Açık Kaynak</span> ile İnşa Edin
+                Gelecegi <span class="nx-text-gradient">Acik Kaynak</span> ile Insa Edin
             </h2>
             <p style="font-size:var(--nx-fs-md); color:var(--nx-text-muted); max-width:560px; margin:0 auto var(--nx-sp-8) auto;">
-                NEXOS topluluğuna katılın. Dağıtımları keşfedin, quiz çözün, ilerlemenizi takip edin ve özgür yazılım dünyasının bir parçası olun.
+                Dagitimlari kesfedin, quiz cozun, ilerlemenizi takip edin ve ozgur yazilim dunyasinin bir parcasi olun. INEXX INTERACTIVE tarafindan gelistirilen bir platform.
             </p>
             <div class="d-flex gap-4 justify-center flex-wrap">
                 <a href="index.php?page=register" class="btn-gradient btn-lg">
-                    <i class="fa-solid fa-user-plus"></i> Hemen Başla
+                    <i class="fa-solid fa-user-plus"></i> Hemen Basla
                 </a>
                 <a href="index.php?page=distros" class="btn-outline btn-lg">
-                    Dağıtımları Keşfet
+                    Dagitimlari Kesfet
                 </a>
             </div>
         </div>
