@@ -4,259 +4,123 @@
    ============================================ */
 
 /* ═══════════════════════════════════════
-   PAGE HERO (Inner pages)
+   ARTICLE STYLE
    ═══════════════════════════════════════ */
-.nx-page-hero {
-  text-align: center;
-  padding: var(--nx-sp-16) 0 var(--nx-sp-12) 0;
-  position: relative;
-}
-.nx-page-hero h1 {
-  font-size: var(--nx-fs-4xl);
-  font-weight: 800;
-  margin-bottom: var(--nx-sp-4);
-}
-.nx-page-hero p {
-  font-size: var(--nx-fs-md);
-  color: var(--nx-text-muted);
-  max-width: 700px;
-  margin: 0 auto;
-  line-height: 1.7;
-}
-
-/* ═══════════════════════════════════════
-   ARTICLE LAYOUT
-   ═══════════════════════════════════════ */
-.nx-article-layout {
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: var(--nx-sp-10);
-  align-items: start;
-}
-.nx-article-sidebar {
-  position: sticky;
-  top: 90px;
-}
-.nx-article-sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-.nx-article-sidebar ul li {
-  margin-bottom: var(--nx-sp-2);
-}
-.nx-article-sidebar ul li a {
-  display: block;
-  padding: 8px 14px;
-  color: var(--nx-text-muted);
-  font-size: var(--nx-fs-sm);
-  border-radius: var(--nx-radius-sm);
-  border-left: 2px solid transparent;
-  transition: all var(--nx-t-fast);
-}
-.nx-article-sidebar ul li a:hover,
-.nx-article-sidebar ul li a.active {
-  color: var(--nx-blue);
-  background: var(--nx-blue-subtle);
-  border-left-color: var(--nx-blue);
-}
-.nx-article-body {
-  background: var(--nx-surface);
-  border: 1px solid var(--nx-border);
-  border-radius: var(--nx-radius-lg);
-  padding: var(--nx-sp-10);
-}
-.nx-article-body h2 {
+.nx-article h2 {
   font-size: var(--nx-fs-2xl);
-  margin-top: var(--nx-sp-10);
+  font-weight: 800;
+  margin-top: var(--nx-sp-12);
+  margin-bottom: var(--nx-sp-5);
   padding-bottom: var(--nx-sp-3);
   border-bottom: 1px solid var(--nx-border);
-  color: var(--nx-cyan);
 }
-.nx-article-body h2:first-of-type {
-  margin-top: 0;
-}
-.nx-article-body p {
-  font-size: var(--nx-fs-base);
-  line-height: 1.8;
+.nx-article h2:first-of-type { margin-top: 0; }
+.nx-article p {
+  font-size: var(--nx-fs-md);
+  line-height: 1.9;
+  color: var(--nx-text-soft);
   margin-bottom: var(--nx-sp-5);
+}
+.nx-article strong { color: var(--nx-text); }
+
+/* ═══════════════════════════════════════
+   QUIZ — Step System
+   ═══════════════════════════════════════ */
+.nx-quiz-step { display: none; }
+.nx-quiz-step.active { 
+  display: block; 
+  animation: quizFadeIn 0.4s ease;
+}
+@keyframes quizFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%  { transform: translateX(-8px); }
+  40%  { transform: translateX(8px); }
+  60%  { transform: translateX(-6px); }
+  80%  { transform: translateX(4px); }
+}
+
+.nx-quiz-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--nx-sp-4);
+}
+
+.nx-quiz-card {
+  cursor: pointer;
+  display: block;
+}
+.nx-quiz-card input[type="radio"] {
+  display: none;
+}
+.nx-quiz-card-inner {
+  background: var(--nx-surface);
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-radius-md);
+  padding: var(--nx-sp-6) var(--nx-sp-5);
+  text-align: center;
+  transition: all 0.25s var(--nx-ease);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--nx-sp-2);
+  min-height: 120px;
+  justify-content: center;
+}
+.nx-quiz-card-inner i {
+  font-size: 1.6rem;
+  margin-bottom: var(--nx-sp-2);
+}
+.nx-quiz-card-inner strong {
+  font-size: var(--nx-fs-sm);
+  color: var(--nx-text);
+}
+.nx-quiz-card-inner span {
+  font-size: var(--nx-fs-xs);
+  color: var(--nx-text-dim);
+}
+
+.nx-quiz-card:hover .nx-quiz-card-inner {
+  border-color: var(--nx-border-light);
+  background: var(--nx-surface-2);
+  transform: translateY(-2px);
+}
+
+.nx-quiz-card input:checked + .nx-quiz-card-inner {
+  border-color: var(--nx-blue);
+  background: var(--nx-blue-subtle);
+  box-shadow: 0 0 0 1px var(--nx-blue), 0 4px 20px rgba(79, 143, 255, 0.15);
+}
+
+/* Champion card for results */
+.nx-champion-card {
+  transform: scale(1.02);
+}
+.nx-champion-card:hover {
+  transform: scale(1.04);
 }
 
 /* ═══════════════════════════════════════
    ARCHITECTURE LAYERS
    ═══════════════════════════════════════ */
-.nx-arch-stack {
-  max-width: 600px;
-  margin: 0 auto var(--nx-sp-12) auto;
-}
 .nx-arch-layer {
-  padding: var(--nx-sp-6);
-  text-align: center;
-  font-weight: 700;
-  color: #fff;
-  position: relative;
-  transition: transform 0.3s ease;
-}
-.nx-arch-layer:hover {
-  transform: scale(1.03);
-  z-index: 2;
-}
-.nx-arch-layer:first-child {
-  border-radius: var(--nx-radius-md) var(--nx-radius-md) 0 0;
-}
-.nx-arch-layer:last-child {
-  border-radius: 0 0 var(--nx-radius-md) var(--nx-radius-md);
-}
-.nx-arch-layer-sub {
-  font-size: var(--nx-fs-xs);
-  font-weight: 400;
-  margin-top: var(--nx-sp-1);
-  opacity: 0.75;
+  transition: all 0.3s ease;
+  cursor: default;
 }
 
 /* ═══════════════════════════════════════
-   SCENARIO CARDS (use_cases)
+   RESPONSIVE
    ═══════════════════════════════════════ */
-.nx-scenario-card {
-  display: flex;
-  align-items: center;
-  gap: var(--nx-sp-8);
-  background: var(--nx-surface);
-  border: 1px solid var(--nx-border);
-  border-radius: var(--nx-radius-lg);
-  padding: var(--nx-sp-8);
-  transition: all 0.3s var(--nx-ease);
-  position: relative;
-  overflow: hidden;
+@media (max-width: 768px) {
+  .nx-quiz-options {
+    grid-template-columns: 1fr 1fr;
+  }
 }
-.nx-scenario-card::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  border-radius: 4px 0 0 4px;
-}
-.nx-scenario-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--nx-shadow-card-hover);
-}
-.nx-scenario-icon {
-  width: 80px;
-  height: 80px;
-  border-radius: var(--nx-radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.4rem;
-  flex-shrink: 0;
-}
-.nx-scenario-body {
-  flex: 1;
-}
-.nx-scenario-body h3 {
-  font-size: var(--nx-fs-xl);
-  margin-bottom: var(--nx-sp-2);
-}
-.nx-scenario-body p {
-  font-size: var(--nx-fs-sm);
-  color: var(--nx-text-muted);
-  line-height: 1.7;
-  margin-bottom: var(--nx-sp-3);
-}
-.nx-scenario-tag {
-  font-size: var(--nx-fs-xs);
-  color: var(--nx-text-soft);
-}
-.nx-scenario-tag strong {
-  color: var(--nx-cyan);
-}
-
-/* ═══════════════════════════════════════
-   QUIZ STYLES
-   ═══════════════════════════════════════ */
-.nx-quiz-container {
-  max-width: 750px;
-  margin: 0 auto;
-  position: relative;
-}
-.nx-quiz-card {
-  background: var(--nx-surface);
-  border: 1px solid var(--nx-border);
-  border-radius: var(--nx-radius-lg);
-  padding: var(--nx-sp-10);
-  position: relative;
-  overflow: hidden;
-}
-.nx-quiz-progress {
-  display: flex;
-  gap: 4px;
-  margin-bottom: var(--nx-sp-8);
-}
-.nx-quiz-progress-step {
-  flex: 1;
-  height: 4px;
-  border-radius: var(--nx-radius-full);
-  background: var(--nx-surface-3);
-  transition: background 0.3s ease;
-}
-.nx-quiz-progress-step.active {
-  background: var(--nx-blue);
-}
-.nx-quiz-progress-step.done {
-  background: var(--nx-green);
-}
-
-/* Radio cards for quiz */
-.radio-card input { display: none; }
-.radio-card .card-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.25);
-  border: 1px solid var(--nx-border);
-  border-radius: var(--nx-radius-md);
-  padding: var(--nx-sp-6);
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.2s var(--nx-ease);
-  min-height: 130px;
-}
-.radio-card .card-content:hover {
-  border-color: var(--nx-border-light);
-  background: rgba(0, 0, 0, 0.35);
-}
-.radio-card input:checked + .card-content {
-  background: var(--nx-blue-subtle);
-  border-color: var(--nx-blue);
-  box-shadow: 0 0 0 1px var(--nx-blue), 0 4px 16px rgba(79,143,255,0.15);
-}
-
-/* Result cards */
-.nx-result-champion {
-  border: 2px solid var(--nx-green);
-  background: var(--nx-green-subtle);
-  box-shadow: 0 0 40px rgba(16,185,129,0.12);
-}
-
-/* ═══════════════════════════════════════
-   RESPONSIVE — CONTENT
-   ═══════════════════════════════════════ */
-@media (max-width: 992px) {
-  .nx-article-layout {
+@media (max-width: 480px) {
+  .nx-quiz-options {
     grid-template-columns: 1fr;
-  }
-  .nx-article-sidebar {
-    display: none;
-  }
-  .nx-scenario-card {
-    flex-direction: column;
-    text-align: center;
-  }
-  .nx-scenario-icon {
-    width: 64px;
-    height: 64px;
-    font-size: 2rem;
   }
 }

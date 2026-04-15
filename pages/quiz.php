@@ -1,5 +1,5 @@
 <?php
-// pages/quiz.php — NEXOS Distro Quiz
+// pages/quiz.php — NEXOS AI-Powered Distro Quiz (Expanded Algorithm)
 require_once 'includes/header.php';
 require_once 'includes/section-title.php';
 global $linux_distros;
@@ -15,22 +15,116 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_quiz'])) {
     $purpose    = isset($_POST['purpose'])    ? $_POST['purpose'] : '';
     $experience = isset($_POST['experience']) ? $_POST['experience'] : '';
     $hardware   = isset($_POST['hardware'])   ? $_POST['hardware'] : '';
+    $priority   = isset($_POST['priority'])   ? $_POST['priority'] : '';
+    $desktop    = isset($_POST['desktop'])    ? $_POST['desktop'] : '';
     
-    $answers = ['purpose' => $purpose, 'experience' => $experience, 'hardware' => $hardware];
+    $answers = [
+        'purpose' => $purpose, 'experience' => $experience, 
+        'hardware' => $hardware, 'priority' => $priority, 'desktop' => $desktop
+    ];
     
     foreach($distros as $d) {
         $point = 0;
-        if($experience == 'beginner')     { $point += ($d['score_beginner'] * 5); }
-        elseif($experience == 'intermediate') { $point += ($d['score_beginner'] * 2); $point += ($d['score_dev'] * 2); }
-        elseif($experience == 'advanced') { $point -= ($d['score_beginner'] * 5); $point += ($d['score_dev'] * 3); $point += ($d['score_server'] * 3); }
         
-        if($purpose == 'gaming')   { $point += ($d['score_gaming'] * 20); $point -= ($d['score_server'] * 10); }
-        elseif($purpose == 'dev')  { $point += ($d['score_dev'] * 10); $point -= ($d['score_beginner'] * 2); }
-        elseif($purpose == 'server') { $point += ($d['score_server'] * 25); $point -= ($d['score_beginner'] * 8); $point -= ($d['score_gaming'] * 5); }
-        elseif($purpose == 'security') { $point += ($d['score_security'] * 25); $point -= ($d['score_beginner'] * 5); }
-        elseif($purpose == 'general')  { $point += ($d['score_beginner'] * 10); $point -= ($d['score_server'] * 10); }
+        // Deneyim seviyesi (agirlik: 5x)
+        if($experience == 'beginner') { 
+            $point += ($d['score_beginner'] * 8); 
+            $point -= (10 - $d['score_beginner']) * 3;
+        }
+        elseif($experience == 'intermediate') { 
+            $point += ($d['score_beginner'] * 2); 
+            $point += ($d['score_dev'] * 4); 
+        }
+        elseif($experience == 'advanced') { 
+            $point -= ($d['score_beginner'] * 6); 
+            $point += ($d['score_dev'] * 5); 
+            $point += ($d['score_server'] * 3); 
+            $point += ($d['score_security'] * 2);
+        }
         
-        if($hardware == 'old') { $point += ($d['score_old_pc'] * 25); $point -= ($d['score_gaming'] * 10); $point -= ($d['score_dev'] * 5); }
+        // Amac (agirlik: 20x)
+        if($purpose == 'gaming') { 
+            $point += ($d['score_gaming'] * 25); 
+            $point -= ($d['score_server'] * 12); 
+            $point += ($d['score_beginner'] * 3);
+        }
+        elseif($purpose == 'dev') { 
+            $point += ($d['score_dev'] * 15); 
+            $point += ($d['score_server'] * 5);
+            $point -= ($d['score_beginner'] * 3); 
+        }
+        elseif($purpose == 'server') { 
+            $point += ($d['score_server'] * 30); 
+            $point -= ($d['score_beginner'] * 10); 
+            $point -= ($d['score_gaming'] * 8); 
+            $point += ($d['score_security'] * 5);
+        }
+        elseif($purpose == 'security') { 
+            $point += ($d['score_security'] * 30); 
+            $point -= ($d['score_beginner'] * 8); 
+            $point -= ($d['score_gaming'] * 10);
+            $point += ($d['score_server'] * 5);
+        }
+        elseif($purpose == 'general') { 
+            $point += ($d['score_beginner'] * 15); 
+            $point += ($d['score_gaming'] * 3);
+            $point -= ($d['score_server'] * 12); 
+        }
+        elseif($purpose == 'education') {
+            $point += ($d['score_beginner'] * 10);
+            $point += ($d['score_dev'] * 5);
+            $point -= ($d['score_server'] * 5);
+        }
+        
+        // Donanim (agirlik: 25x)
+        if($hardware == 'old') { 
+            $point += ($d['score_old_pc'] * 30); 
+            $point -= ($d['score_gaming'] * 12); 
+            $point -= ($d['score_dev'] * 5); 
+        }
+        elseif($hardware == 'mid') {
+            $point += ($d['score_beginner'] * 3);
+            $point += ($d['score_dev'] * 3);
+        }
+        elseif($hardware == 'high') {
+            $point += ($d['score_gaming'] * 5);
+            $point += ($d['score_dev'] * 5);
+            $point -= ($d['score_old_pc'] * 3);
+        }
+        
+        // Oncelik (yeni soru)
+        if($priority == 'stability') {
+            $point += ($d['score_server'] * 8);
+            $point += ($d['score_beginner'] * 3);
+        }
+        elseif($priority == 'cutting_edge') {
+            $point -= ($d['score_beginner'] * 5);
+            $point += ($d['score_dev'] * 8);
+        }
+        elseif($priority == 'privacy') {
+            $point += ($d['score_security'] * 10);
+            $point -= ($d['score_beginner'] * 2);
+        }
+        elseif($priority == 'customization') {
+            $point -= ($d['score_beginner'] * 5);
+            $point += ($d['score_dev'] * 5);
+            $point += ($d['score_security'] * 3);
+        }
+        
+        // Masaustu tercihi (yeni soru)
+        if($desktop == 'modern_gui') {
+            $point += ($d['score_beginner'] * 5);
+            $point += ($d['score_gaming'] * 3);
+        }
+        elseif($desktop == 'lightweight') {
+            $point += ($d['score_old_pc'] * 8);
+        }
+        elseif($desktop == 'terminal_only') {
+            $point -= ($d['score_beginner'] * 8);
+            $point += ($d['score_server'] * 10);
+            $point += ($d['score_security'] * 5);
+        }
+        
         $scores[$d['id']] = $point;
     }
     
@@ -49,193 +143,175 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_quiz'])) {
 }
 ?>
 
-<section class="nx-page-hero nx-bg-grid">
-    <div class="container">
-        <div class="nx-hero-label mx-auto" style="display:inline-flex;"><i class="fa-solid fa-wand-magic-sparkles"></i> Akıllı Analiz</div>
-        <h1 class="nx-text-gradient-static"><?= $show_results ? 'Analiz Sonuçların!' : 'Hangi Linux Sana Göre?' ?></h1>
-        <p><?= $show_results ? 'Puanlama algoritmasına göre en uygun dağıtımları belirledik.' : 'Kısa yanıtlara göre binlerce olasılığı eleyip en uygun Linux dağıtımını buluyoruz.' ?></p>
-    </div>
-</section>
+<?php if(!$show_results): ?>
+<section class="nx-section" style="min-height:90vh; display:flex; align-items:center;">
+    <div class="container" style="max-width:720px;">
+        <?php sectionTitle('AI Algoritma', 'Sana En Uygun Dagitimiizi Bulalim', '5 soru, gelismis agirlikli puanlama. Sonuc saniyeler icinde.'); ?>
 
-<section class="nx-section-sm">
-    <div class="container">
-        <?php if($show_results): ?>
-        <!-- RESULTS -->
-        <div style="max-width:800px; margin:0 auto; display:flex; flex-direction:column; gap:var(--nx-sp-6); align-items:center;">
-            <?php foreach($result_distros as $i => $res): 
-                $badgeClass = $i === 0 ? 'nx-badge-green' : 'nx-badge-blue';
-            ?>
-            <div class="nx-card reveal w-full" style="<?= $i === 0 ? 'border:2px solid var(--nx-green); background:var(--nx-green-subtle); box-shadow:0 0 40px rgba(16,185,129,0.12);' : 'background:rgba(0,0,0,0.2);' ?>">
-                <div class="d-flex justify-between items-center mb-4" style="border-bottom:1px solid var(--nx-border); padding-bottom:var(--nx-sp-4);">
-                    <h2 style="margin:0; color:<?= $i === 0 ? 'var(--nx-green)' : 'var(--nx-text)' ?>;">
-                        <?= $i === 0 ? '<i class="fa-solid fa-trophy"></i> ' : '' ?>#<?= $i + 1 ?> : <?= htmlspecialchars($res['name']) ?>
-                    </h2>
-                    <?php if($i === 0): ?>
-                        <span class="nx-badge nx-badge-green">EN YÜKSEK UYUM</span>
-                    <?php else: ?>
-                        <span class="text-muted" style="font-size:var(--nx-fs-sm);">Alternatif</span>
-                    <?php endif; ?>
+        <form method="POST" action="index.php?page=quiz" id="quizForm">
+            <!-- Progress -->
+            <div class="nx-quiz-progress" style="margin-bottom:var(--nx-sp-10);">
+                <div class="d-flex justify-between mb-2" style="font-size:var(--nx-fs-xs); color:var(--nx-text-dim);">
+                    <span>Soru <span id="currentStep">1</span> / 5</span>
+                    <span id="progressPercent">20%</span>
                 </div>
-                <p style="font-size:var(--nx-fs-md); line-height:1.7;"><?= htmlspecialchars($res['short_desc']) ?></p>
-                <div class="text-muted mb-4" style="font-size:var(--nx-fs-sm);">
-                    <strong>Taban:</strong> <?= htmlspecialchars($res['base_os']) ?> &nbsp;|&nbsp;
-                    <strong>GUI:</strong> <?= htmlspecialchars($res['desktop_environment']) ?>
-                </div>
-                <div class="d-flex justify-between items-center">
-                    <?php if($i === 0 && !isLoggedIn()): ?>
-                        <span class="text-muted" style="font-size:var(--nx-fs-xs);">Sonucu kaydetmek için <a href="index.php?page=register" style="text-decoration:underline;">kayıt ol</a>.</span>
-                    <?php else: ?>
-                        <span></span>
-                    <?php endif; ?>
-                    <a href="index.php?page=distro_detail&slug=<?= $res['slug'] ?>" class="<?= $i === 0 ? 'btn-highlight' : 'btn-outline' ?>">
-                        Detayları Gör <i class="fa-solid fa-arrow-right" style="margin-left:6px;"></i>
-                    </a>
+                <div class="nx-progress"><div class="nx-progress-bar" id="progressBar" style="width:20%; background:var(--nx-gradient-blue);"></div></div>
+            </div>
+
+            <!-- Step 1: Amac -->
+            <div class="nx-quiz-step active" data-step="1">
+                <h3 style="margin-bottom:var(--nx-sp-2); font-size:var(--nx-fs-2xl);">Birincil amac</h3>
+                <p class="text-muted mb-6" style="font-size:var(--nx-fs-sm);">Linux'u ne icin kullanmayi planliyorsunuz?</p>
+                <div class="nx-quiz-options">
+                    <label class="nx-quiz-card"><input type="radio" name="purpose" value="general" required><div class="nx-quiz-card-inner"><i class="fa-solid fa-house" style="color:var(--nx-blue);"></i><strong>Gunluk Kullanim</strong><span>Web, medya, ofis</span></div></label>
+                    <label class="nx-quiz-card"><input type="radio" name="purpose" value="dev"><div class="nx-quiz-card-inner"><i class="fa-solid fa-code" style="color:var(--nx-green);"></i><strong>Yazilim Gelistirme</strong><span>Kod, Docker, Git</span></div></label>
+                    <label class="nx-quiz-card"><input type="radio" name="purpose" value="gaming"><div class="nx-quiz-card-inner"><i class="fa-solid fa-gamepad" style="color:var(--nx-purple);"></i><strong>Oyun</strong><span>Steam, Proton, GPU</span></div></label>
+                    <label class="nx-quiz-card"><input type="radio" name="purpose" value="server"><div class="nx-quiz-card-inner"><i class="fa-solid fa-server" style="color:var(--nx-amber);"></i><strong>Sunucu</strong><span>Web hosting, veritabani</span></div></label>
+                    <label class="nx-quiz-card"><input type="radio" name="purpose" value="security"><div class="nx-quiz-card-inner"><i class="fa-solid fa-shield-halved" style="color:var(--nx-red);"></i><strong>Siber Guvenlik</strong><span>Pentest, forensics</span></div></label>
+                    <label class="nx-quiz-card"><input type="radio" name="purpose" value="education"><div class="nx-quiz-card-inner"><i class="fa-solid fa-graduation-cap" style="color:var(--nx-cyan);"></i><strong>Egitim</strong><span>Ogrenme, akademik</span></div></label>
                 </div>
             </div>
-            <?php endforeach; ?>
-            <a href="index.php?page=quiz" class="btn-ghost mt-4"><i class="fa-solid fa-rotate-left"></i> Testi Yeniden Çöz</a>
-        </div>
 
-        <?php else: ?>
-        <!-- QUIZ FORM -->
-        <div class="nx-quiz-container">
-            <div class="nx-quiz-card reveal">
-                <!-- Progress -->
-                <div class="nx-quiz-progress">
-                    <div class="nx-quiz-progress-step active"></div>
-                    <div class="nx-quiz-progress-step"></div>
-                    <div class="nx-quiz-progress-step"></div>
+            <!-- Step 2: Deneyim -->
+            <div class="nx-quiz-step" data-step="2">
+                <h3 style="margin-bottom:var(--nx-sp-2); font-size:var(--nx-fs-2xl);">Deneyim seviyesi</h3>
+                <p class="text-muted mb-6" style="font-size:var(--nx-fs-sm);">Linux ile ilgili tecrübeniz ne düzeyde?</p>
+                <div class="nx-quiz-options">
+                    <label class="nx-quiz-card"><input type="radio" name="experience" value="beginner" required><div class="nx-quiz-card-inner"><i class="fa-solid fa-seedling" style="color:var(--nx-green);"></i><strong>Yeni Basliyorum</strong><span>Hic kullanmadim</span></div></label>
+                    <label class="nx-quiz-card"><input type="radio" name="experience" value="intermediate"><div class="nx-quiz-card-inner"><i class="fa-solid fa-laptop-code" style="color:var(--nx-blue);"></i><strong>Orta Seviye</strong><span>Temel komutlari biliyorum</span></div></label>
+                    <label class="nx-quiz-card"><input type="radio" name="experience" value="advanced"><div class="nx-quiz-card-inner"><i class="fa-solid fa-terminal" style="color:var(--nx-purple);"></i><strong>Ileri Seviye</strong><span>Kernel, script, server</span></div></label>
                 </div>
-
-                <!-- Loader -->
-                <div id="loaderArea" style="display:none; position:absolute; inset:0; background:var(--nx-surface); z-index:10; flex-direction:column; justify-content:center; align-items:center; border-radius:inherit;">
-                    <i class="fa-solid fa-microchip nx-spin text-primary mb-4" style="font-size:3rem;"></i>
-                    <h3 class="text-cyan">Algoritmalar Hesaplanıyor...</h3>
-                </div>
-
-                <form id="quizForm" method="POST" action="index.php?page=quiz">
-                    <!-- Q1: Purpose -->
-                    <div class="step" id="step1">
-                        <h3 class="text-cyan mb-6"><i class="fa-solid fa-circle-question"></i> Soru 1: İşletim sistemini ne için kullanacaksınız?</h3>
-                        <div class="radio-group grid grid-2 gap-4">
-                            <label class="radio-card"><input type="radio" name="purpose" value="general" required>
-                                <span class="card-content"><i class="fa-solid fa-house text-primary mb-3" style="font-size:2rem;"></i><strong>Ev Kullanımı</strong><span class="text-muted" style="font-size:var(--nx-fs-xs);">Web, video, dosya yönetimi</span></span>
-                            </label>
-                            <label class="radio-card"><input type="radio" name="purpose" value="dev">
-                                <span class="card-content"><i class="fa-solid fa-code text-primary mb-3" style="font-size:2rem;"></i><strong>Geliştirici</strong><span class="text-muted" style="font-size:var(--nx-fs-xs);">Kod, Docker, Terminal</span></span>
-                            </label>
-                            <label class="radio-card"><input type="radio" name="purpose" value="gaming">
-                                <span class="card-content"><i class="fa-solid fa-gamepad text-purple mb-3" style="font-size:2rem;"></i><strong>Oyuncu</strong><span class="text-muted" style="font-size:var(--nx-fs-xs);">Steam, Proton, FPS</span></span>
-                            </label>
-                            <label class="radio-card"><input type="radio" name="purpose" value="security">
-                                <span class="card-content"><i class="fa-solid fa-mask text-pink mb-3" style="font-size:2rem;"></i><strong>Siber Güvenlik</strong><span class="text-muted" style="font-size:var(--nx-fs-xs);">Pentest, hacking araçları</span></span>
-                            </label>
-                            <label class="radio-card" style="grid-column:span 2;"><input type="radio" name="purpose" value="server">
-                                <span class="card-content" style="flex-direction:row; gap:var(--nx-sp-4);"><i class="fa-solid fa-server text-amber" style="font-size:2rem;"></i><div style="text-align:left;"><strong>Sunucu</strong><div class="text-muted" style="font-size:var(--nx-fs-xs);">7/24 çalışan uzak sistem</div></div></span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Q2: Experience -->
-                    <div class="step" id="step2" style="display:none;">
-                        <h3 class="text-cyan mb-6"><i class="fa-solid fa-circle-question"></i> Soru 2: Linux deneyiminiz?</h3>
-                        <div class="radio-group" style="display:flex; flex-direction:column; gap:var(--nx-sp-4);">
-                            <label class="radio-card"><input type="radio" name="experience" value="beginner" required>
-                                <span class="card-content" style="flex-direction:row; gap:var(--nx-sp-5); text-align:left; min-height:auto; padding:var(--nx-sp-5);">
-                                    <i class="fa-brands fa-windows text-primary" style="font-size:1.8rem;"></i>
-                                    <div><strong>Sıfır Tecrübe</strong><div class="text-muted mt-1" style="font-size:var(--nx-fs-xs);">Tıkla-çalıştır bir şey istiyorum.</div></div>
-                                </span>
-                            </label>
-                            <label class="radio-card"><input type="radio" name="experience" value="intermediate">
-                                <span class="card-content" style="flex-direction:row; gap:var(--nx-sp-5); text-align:left; min-height:auto; padding:var(--nx-sp-5);">
-                                    <i class="fa-solid fa-terminal text-amber" style="font-size:1.8rem;"></i>
-                                    <div><strong>Orta Seviye</strong><div class="text-muted mt-1" style="font-size:var(--nx-fs-xs);">sudo apt-get install anlıyorum.</div></div>
-                                </span>
-                            </label>
-                            <label class="radio-card"><input type="radio" name="experience" value="advanced">
-                                <span class="card-content" style="flex-direction:row; gap:var(--nx-sp-5); text-align:left; min-height:auto; padding:var(--nx-sp-5);">
-                                    <i class="fa-solid fa-code-commit text-red" style="font-size:1.8rem;"></i>
-                                    <div><strong>İleri Düzey</strong><div class="text-muted mt-1" style="font-size:var(--nx-fs-xs);">Sistemi parça parça kendim kurup yönetirim.</div></div>
-                                </span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Q3: Hardware -->
-                    <div class="step" id="step3" style="display:none;">
-                        <h3 class="text-cyan mb-6"><i class="fa-solid fa-circle-question"></i> Soru 3: Cihazınızın gücü?</h3>
-                        <div class="radio-group grid grid-2 gap-5">
-                            <label class="radio-card"><input type="radio" name="hardware" value="modern" required>
-                                <span class="card-content"><i class="fa-solid fa-bolt text-green mb-3" style="font-size:2.5rem;"></i><strong>Güçlü / Ortalama</strong><span class="text-muted mt-2" style="font-size:var(--nx-fs-xs);">4GB+ RAM, SSD</span></span>
-                            </label>
-                            <label class="radio-card"><input type="radio" name="hardware" value="old">
-                                <span class="card-content"><i class="fa-solid fa-person-cane text-red mb-3" style="font-size:2.5rem;"></i><strong>Eski Donanım</strong><span class="text-muted mt-2" style="font-size:var(--nx-fs-xs);">Düşük RAM, HDD</span></span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Controls -->
-                    <div class="d-flex justify-between items-center mt-8" style="border-top:1px solid var(--nx-border); padding-top:var(--nx-sp-5);">
-                        <button type="button" class="btn-ghost" id="prevBtn" style="visibility:hidden;" onclick="nextPrev(-1)"><i class="fa-solid fa-arrow-left"></i> Geri</button>
-                        <div class="text-muted" style="font-size:var(--nx-fs-sm);"><span id="stepCounter" class="font-bold text-white">1</span> / 3</div>
-                        <button type="button" class="btn-primary" id="nextBtn" onclick="nextPrev(1)">Devam <i class="fa-solid fa-arrow-right"></i></button>
-                        <button type="submit" name="submit_quiz" class="btn-gradient" id="submitBtn" style="display:none;" onclick="showLoader()"><i class="fa-solid fa-wand-magic"></i> Sonucu Gör</button>
-                    </div>
-                </form>
             </div>
-        </div>
-        <?php endif; ?>
+
+            <!-- Step 3: Donanim -->
+            <div class="nx-quiz-step" data-step="3">
+                <h3 style="margin-bottom:var(--nx-sp-2); font-size:var(--nx-fs-2xl);">Donanim gucu</h3>
+                <p class="text-muted mb-6" style="font-size:var(--nx-fs-sm);">Bilgisayarinizin yaklasik performans seviyesi.</p>
+                <div class="nx-quiz-options">
+                    <label class="nx-quiz-card"><input type="radio" name="hardware" value="old" required><div class="nx-quiz-card-inner"><i class="fa-solid fa-battery-quarter" style="color:var(--nx-amber);"></i><strong>Dusuk / Eski</strong><span>4GB RAM, eski islemci</span></div></label>
+                    <label class="nx-quiz-card"><input type="radio" name="hardware" value="mid"><div class="nx-quiz-card-inner"><i class="fa-solid fa-battery-half" style="color:var(--nx-blue);"></i><strong>Orta</strong><span>8GB RAM, modern CPU</span></div></label>
+                    <label class="nx-quiz-card"><input type="radio" name="hardware" value="high"><div class="nx-quiz-card-inner"><i class="fa-solid fa-battery-full" style="color:var(--nx-green);"></i><strong>Yuksek</strong><span>16GB+ RAM, GPU</span></div></label>
+                </div>
+            </div>
+
+            <!-- Step 4: Oncelik (YENI) -->
+            <div class="nx-quiz-step" data-step="4">
+                <h3 style="margin-bottom:var(--nx-sp-2); font-size:var(--nx-fs-2xl);">En onemli oncelik</h3>
+                <p class="text-muted mb-6" style="font-size:var(--nx-fs-sm);">Bir isletim sisteminde sizin icin en onemli sey nedir?</p>
+                <div class="nx-quiz-options">
+                    <label class="nx-quiz-card"><input type="radio" name="priority" value="stability" required><div class="nx-quiz-card-inner"><i class="fa-solid fa-mountain" style="color:var(--nx-green);"></i><strong>Kararlilik</strong><span>Cokmesin, calışsın</span></div></label>
+                    <label class="nx-quiz-card"><input type="radio" name="priority" value="cutting_edge"><div class="nx-quiz-card-inner"><i class="fa-solid fa-bolt" style="color:var(--nx-cyan);"></i><strong>En Yeni Teknoloji</strong><span>Son kernel, son yazilim</span></div></label>
+                    <label class="nx-quiz-card"><input type="radio" name="priority" value="privacy"><div class="nx-quiz-card-inner"><i class="fa-solid fa-user-secret" style="color:var(--nx-purple);"></i><strong>Gizlilik</strong><span>Izlenme istemiyorum</span></div></label>
+                    <label class="nx-quiz-card"><input type="radio" name="priority" value="customization"><div class="nx-quiz-card-inner"><i class="fa-solid fa-palette" style="color:var(--nx-pink);"></i><strong>Ozellestirme</strong><span>Her seyi kontrol etmek</span></div></label>
+                </div>
+            </div>
+
+            <!-- Step 5: Masaustu (YENI) -->
+            <div class="nx-quiz-step" data-step="5">
+                <h3 style="margin-bottom:var(--nx-sp-2); font-size:var(--nx-fs-2xl);">Arayuz tercihi</h3>
+                <p class="text-muted mb-6" style="font-size:var(--nx-fs-sm);">Nasil bir gorunume sahip bir sistem tercih edersiniz?</p>
+                <div class="nx-quiz-options">
+                    <label class="nx-quiz-card"><input type="radio" name="desktop" value="modern_gui" required><div class="nx-quiz-card-inner"><i class="fa-solid fa-display" style="color:var(--nx-blue);"></i><strong>Modern Grafik</strong><span>GNOME, KDE gibi</span></div></label>
+                    <label class="nx-quiz-card"><input type="radio" name="desktop" value="lightweight"><div class="nx-quiz-card-inner"><i class="fa-solid fa-feather" style="color:var(--nx-green);"></i><strong>Hafif Arayuz</strong><span>XFCE, LXDE</span></div></label>
+                    <label class="nx-quiz-card"><input type="radio" name="desktop" value="terminal_only"><div class="nx-quiz-card-inner"><i class="fa-solid fa-rectangle-terminal" style="color:var(--nx-amber);"></i><strong>Sadece Terminal</strong><span>GUI gereksiz</span></div></label>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="d-flex justify-between mt-8" style="gap:var(--nx-sp-4);">
+                <button type="button" id="prevBtn" class="btn-ghost" style="display:none;" onclick="quizNav(-1)">
+                    <i class="fa-solid fa-arrow-left"></i> Geri
+                </button>
+                <div style="flex:1;"></div>
+                <button type="button" id="nextBtn" class="btn-primary" onclick="quizNav(1)">
+                    Sonraki <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <button type="submit" name="submit_quiz" id="submitBtn" class="btn-gradient btn-lg" style="display:none;">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Analiz Et
+                </button>
+            </div>
+        </form>
     </div>
 </section>
 
 <script>
-let currentStep = 0;
-const steps = document.querySelectorAll('.step');
+let currentStep = 1;
+const totalSteps = 5;
 
-function showStep(n) {
-    if(!steps[n]) return;
-    steps.forEach((s, i) => {
-        s.style.display = i === n ? 'block' : 'none';
-        if(i === n) s.style.animation = 'slideUp 0.4s ease forwards';
-    });
-    document.getElementById('prevBtn').style.visibility = n === 0 ? 'hidden' : 'visible';
-    if(n === steps.length - 1) {
-        document.getElementById('nextBtn').style.display = 'none';
-        document.getElementById('submitBtn').style.display = 'inline-flex';
-    } else {
-        document.getElementById('nextBtn').style.display = 'inline-flex';
-        document.getElementById('submitBtn').style.display = 'none';
+function quizNav(dir) {
+    const steps = document.querySelectorAll('.nx-quiz-step');
+    const current = steps[currentStep - 1];
+    const radios = current.querySelectorAll('input[type="radio"]');
+    let selected = false;
+    radios.forEach(r => { if(r.checked) selected = true; });
+    if(dir === 1 && !selected) { 
+        current.style.animation = 'shake 0.4s ease';
+        setTimeout(() => current.style.animation = '', 400);
+        return; 
     }
-    document.getElementById('stepCounter').innerText = n + 1;
     
-    // Update progress bar
-    document.querySelectorAll('.nx-quiz-progress-step').forEach((ps, i) => {
-        ps.classList.remove('active', 'done');
-        if(i < n) ps.classList.add('done');
-        if(i === n) ps.classList.add('active');
+    currentStep += dir;
+    if(currentStep < 1) currentStep = 1;
+    if(currentStep > totalSteps) currentStep = totalSteps;
+    
+    steps.forEach((s, i) => {
+        s.classList.toggle('active', i === currentStep - 1);
     });
+    
+    document.getElementById('prevBtn').style.display = currentStep > 1 ? 'inline-flex' : 'none';
+    document.getElementById('nextBtn').style.display = currentStep < totalSteps ? 'inline-flex' : 'none';
+    document.getElementById('submitBtn').style.display = currentStep === totalSteps ? 'inline-flex' : 'none';
+    document.getElementById('currentStep').textContent = currentStep;
+    const pct = Math.round((currentStep / totalSteps) * 100);
+    document.getElementById('progressPercent').textContent = pct + '%';
+    document.getElementById('progressBar').style.width = pct + '%';
 }
-
-function nextPrev(n) {
-    if(n === 1) {
-        const inputs = steps[currentStep].querySelectorAll('input[type="radio"]');
-        let selected = false;
-        inputs.forEach(i => { if(i.checked) selected = true; });
-        if(!selected) { alert('Devam etmek için bir cevap seçin.'); return; }
-    }
-    currentStep += n;
-    showStep(currentStep);
-}
-
-function showLoader() {
-    const lf = document.getElementById('loaderArea');
-    if(lf) lf.style.display = 'flex';
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const lf = document.getElementById('loaderArea');
-    if(lf) lf.style.display = 'none';
-});
 </script>
+
+<?php else: ?>
+<!-- RESULTS -->
+<section class="nx-section" style="min-height:90vh; display:flex; align-items:center;">
+    <div class="container" style="max-width:860px;">
+        <div class="text-center mb-10 reveal">
+            <div class="nx-label" style="display:inline-flex; align-items:center; gap:8px; padding:6px 18px; background:var(--nx-green-subtle); color:var(--nx-green); border-radius:var(--nx-radius-full); font-size:var(--nx-fs-xs); font-weight:700; text-transform:uppercase; letter-spacing:1px; border:1px solid rgba(16,185,129,0.2);">
+                <i class="fa-solid fa-check-circle"></i> Analiz Tamamlandi
+            </div>
+            <h2 style="font-size:var(--nx-fs-4xl); margin-top:var(--nx-sp-5); font-weight:800;">Sana En Uygun Dagitimlar</h2>
+            <p class="text-muted" style="max-width:500px; margin:var(--nx-sp-3) auto 0;">5 soruya verdigin yanitlara gore algoritmamiz bu sonuclari uretti.</p>
+        </div>
+
+        <div class="grid grid-3 gap-6 reveal-stagger">
+            <?php foreach($result_distros as $i => $rd): 
+                $isChampion = ($i === 0);
+                $medal = ['fa-trophy', 'fa-medal', 'fa-award'];
+                $medalColor = ['var(--nx-amber)', 'var(--nx-text-soft)', 'var(--nx-amber)'];
+                $rankLabel = ['En Iyi Eslesme', '2. Oneri', '3. Oneri'];
+            ?>
+            <div class="nx-card reveal <?= $isChampion ? 'nx-champion-card' : '' ?>" style="<?= $isChampion ? 'border-color:rgba(16,185,129,0.3); background:var(--nx-green-subtle);' : '' ?> padding:var(--nx-sp-8); text-align:center;">
+                <div style="margin-bottom:var(--nx-sp-4);">
+                    <i class="fa-solid <?= $medal[$i] ?>" style="font-size:2rem; color:<?= $medalColor[$i] ?>;"></i>
+                </div>
+                <div style="font-size:var(--nx-fs-xs); color:<?= $isChampion ? 'var(--nx-green)' : 'var(--nx-text-muted)' ?>; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:var(--nx-sp-3);">
+                    <?= $rankLabel[$i] ?>
+                </div>
+                <h3 style="font-size:var(--nx-fs-2xl); color:<?= $isChampion ? 'var(--nx-green)' : 'var(--nx-blue)' ?>; margin-bottom:var(--nx-sp-3);"><?= htmlspecialchars($rd['name']) ?></h3>
+                <p class="text-muted mb-4" style="font-size:var(--nx-fs-sm); line-height:1.6;"><?= htmlspecialchars($rd['short_desc']) ?></p>
+                <div style="font-family:var(--nx-font-mono); font-size:var(--nx-fs-xs); color:var(--nx-text-dim); margin-bottom:var(--nx-sp-5);">
+                    skor: <?= $rd['algo_score'] ?>pt
+                </div>
+                <a href="index.php?page=distro_detail&slug=<?= urlencode($rd['slug']) ?>" class="<?= $isChampion ? 'btn-highlight' : 'btn-outline' ?> w-full" style="justify-content:center;">
+                    Detaylari Incele
+                </a>
+            </div>
+            <?php endforeach; ?>
+        </div>
+
+        <div class="text-center mt-10 reveal">
+            <a href="index.php?page=quiz" class="btn-ghost"><i class="fa-solid fa-rotate"></i> Testi Tekrarla</a>
+            <a href="index.php?page=distros" class="btn-outline" style="margin-left:var(--nx-sp-4);"><i class="fa-solid fa-th-large"></i> Tum Dagitimlar</a>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
 
 <?php require_once 'includes/footer.php'; ?>

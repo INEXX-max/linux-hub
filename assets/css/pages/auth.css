@@ -1,6 +1,6 @@
 /* ============================================
-   NEXOS — Auth Page Styles
-   Login, Register, Forgot Password
+   NEXOS — Auth Pages (login, register, forgot)
+   Apple-style minimal glassmorphism
    ============================================ */
 
 .nx-auth-wrapper {
@@ -8,104 +8,107 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--nx-sp-8) var(--nx-sp-4);
-  position: relative;
-}
-.nx-auth-wrapper::before {
-  content: '';
-  position: absolute;
-  top: -20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(79, 143, 255, 0.08) 0%, transparent 70%);
-  pointer-events: none;
+  padding: var(--nx-sp-10) var(--nx-sp-6);
 }
 
 .nx-auth-card {
   width: 100%;
-  max-width: 440px;
+  max-width: 420px;
   background: var(--nx-surface);
   border: 1px solid var(--nx-border);
-  border-radius: var(--nx-radius-lg);
-  padding: var(--nx-sp-10);
-  position: relative;
-  z-index: 1;
+  border-radius: var(--nx-radius-xl);
+  padding: var(--nx-sp-12) var(--nx-sp-10);
   box-shadow: var(--nx-shadow-xl);
+  position: relative;
+  overflow: hidden;
 }
 .nx-auth-card::before {
   content: '';
   position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(160deg, rgba(79,143,255,0.2) 0%, transparent 30%, transparent 70%, rgba(139,92,246,0.15) 100%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--nx-gradient-blue);
 }
+
 .nx-auth-header {
   text-align: center;
   margin-bottom: var(--nx-sp-8);
 }
-.nx-auth-header .nx-auth-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: var(--nx-radius-md);
+
+.nx-auth-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--nx-radius-lg);
   background: var(--nx-blue-subtle);
+  color: var(--nx-blue);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
-  color: var(--nx-blue);
-  margin: 0 auto var(--nx-sp-5) auto;
+  font-size: 1.6rem;
+  margin: 0 auto var(--nx-sp-5);
+  border: 1px solid rgba(79, 143, 255, 0.15);
 }
+
 .nx-auth-header h2 {
   font-size: var(--nx-fs-2xl);
+  font-weight: 800;
   margin-bottom: var(--nx-sp-2);
 }
 .nx-auth-header p {
+  color: var(--nx-text-dim);
   font-size: var(--nx-fs-sm);
-  color: var(--nx-text-muted);
-  margin-bottom: 0;
 }
 
+.nx-auth-form .form-group {
+  margin-bottom: var(--nx-sp-5);
+}
+.nx-auth-form .form-label {
+  font-size: var(--nx-fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--nx-text-muted);
+  margin-bottom: var(--nx-sp-2);
+}
 .nx-auth-form .form-control {
-  padding: 14px 18px;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--nx-border);
-  font-size: var(--nx-fs-sm);
+  background: rgba(0, 0, 0, 0.4);
+  border-color: var(--nx-border);
+  padding: 14px 16px;
+  border-radius: var(--nx-radius-sm);
 }
 .nx-auth-form .form-control:focus {
   border-color: var(--nx-blue);
   box-shadow: 0 0 0 3px var(--nx-blue-glow);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .nx-auth-footer {
   text-align: center;
-  margin-top: var(--nx-sp-6);
+  margin-top: var(--nx-sp-8);
+  padding-top: var(--nx-sp-6);
+  border-top: 1px solid var(--nx-border);
   font-size: var(--nx-fs-sm);
-  color: var(--nx-text-muted);
+  color: var(--nx-text-dim);
 }
 .nx-auth-footer a {
   color: var(--nx-blue);
   font-weight: 600;
 }
-
-.nx-auth-divider {
-  display: flex;
-  align-items: center;
-  gap: var(--nx-sp-4);
-  margin: var(--nx-sp-6) 0;
-  color: var(--nx-text-dim);
-  font-size: var(--nx-fs-xs);
+.nx-auth-footer a:hover {
+  color: var(--nx-cyan);
 }
-.nx-auth-divider::before,
-.nx-auth-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--nx-border);
+
+/* Width utility */
+.w-full {
+  width: 100%;
+  display: flex;
+}
+
+@media (max-width: 480px) {
+  .nx-auth-card {
+    padding: var(--nx-sp-8) var(--nx-sp-6);
+    border-radius: var(--nx-radius-lg);
+  }
 }

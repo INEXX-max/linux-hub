@@ -1,82 +1,102 @@
 <?php
-// pages/what-is-linux.php — NEXOS Premium Content Page
+// pages/what-is-linux.php — NEXOS Modern Content Page
 require_once 'includes/header.php';
 require_once 'includes/section-title.php';
 ?>
 
-<section class="nx-page-hero nx-bg-grid">
-    <div class="nx-glow-orb nx-glow-orb-blue" style="top:-30%; right:10%;"></div>
-    <div class="container">
-        <div class="nx-hero-label mx-auto" style="display:inline-flex;"><i class="fa-solid fa-book-open"></i> Temel Bilgi</div>
-        <h1 class="nx-text-gradient-static">Linux Nedir?</h1>
-        <p>Açık kaynaklı, güçlü ve özgür — dünyayı sessizce yöneten işletim sistemi çekirdeği.</p>
+<!-- Hero Banner -->
+<section class="nx-section" style="padding-top:var(--nx-sp-20);">
+    <div class="container" style="max-width:800px;">
+        <div class="text-center reveal">
+            <div class="nx-label" style="display:inline-flex; align-items:center; gap:8px; padding:6px 18px; background:var(--nx-blue-subtle); color:var(--nx-blue); border-radius:var(--nx-radius-full); font-size:var(--nx-fs-xs); font-weight:700; text-transform:uppercase; letter-spacing:1px; border:1px solid rgba(79,143,255,0.2);">
+                <i class="fa-solid fa-book-open"></i> Rehber
+            </div>
+            <h1 style="font-size:var(--nx-fs-hero); font-weight:800; margin-top:var(--nx-sp-5); line-height:1.1;">
+                Linux <span class="nx-text-gradient">Nedir?</span>
+            </h1>
+            <p class="text-muted" style="font-size:var(--nx-fs-lg); max-width:600px; margin:var(--nx-sp-5) auto 0; line-height:1.7;">
+                Dunyayi sessizce calistiran acik kaynakli isletim sistemi cekirdegi ve onun etrafinda insa edilen ekosistem.
+            </p>
+        </div>
     </div>
 </section>
 
+<!-- Content -->
 <section class="nx-section-sm">
-    <div class="container">
-        <div class="nx-article-layout">
-            <!-- Sidebar -->
-            <aside class="nx-article-sidebar">
-                <div class="nx-card" style="padding:var(--nx-sp-5);">
-                    <h4 class="text-primary mb-4" style="font-size:var(--nx-fs-sm);">İÇİNDEKİLER</h4>
-                    <ul>
-                        <li><a href="#tanim">Linux Nedir?</a></li>
-                        <li><a href="#cekirdek">Çekirdek vs Dağıtım</a></li>
-                        <li><a href="#acik-kaynak">Açık Kaynak Mantığı</a></li>
-                        <li><a href="#avantajlar">Temel Avantajları</a></li>
-                    </ul>
+    <div class="container" style="max-width:760px;">
+        <div class="nx-article reveal">
+            <h2 style="color:var(--nx-blue);">Cekirdek: Her Seyin Temeli</h2>
+            <p>Linux, 1991 yilinda Linus Torvalds tarafindan gelistirilen isletim sistemi cekirdegi (kernel). Cekirdek, donanim ile yazilim arasindaki koprudur — islemci, bellek, disk, ag gibi tum donanim kaynaklarini yonetir. Bir isletim sistemi gorsellestirmek gerekirse:</p>
+            
+            <div class="nx-card" style="padding:var(--nx-sp-8); margin:var(--nx-sp-8) 0; background:var(--nx-surface); border:1px solid var(--nx-border);">
+                <div style="font-family:var(--nx-font-mono); font-size:var(--nx-fs-sm); color:var(--nx-text-soft); line-height:2;">
+                    <div style="color:var(--nx-text-dim);">// Isletim Sistemi Katmanlari</div>
+                    <div><span style="color:var(--nx-blue);">Uygulamalar</span> → Web tarayici, terminal, editör</div>
+                    <div><span style="color:var(--nx-cyan);">Shell</span> → Kullanicinin komut verdigi katman</div>
+                    <div><span style="color:var(--nx-green);">Kernel</span> → Donanimi yoneten cekirdek</div>
+                    <div><span style="color:var(--nx-amber);">Donanim</span> → CPU, RAM, Disk, GPU</div>
                 </div>
-            </aside>
+            </div>
 
-            <!-- Article Body -->
-            <article class="nx-article-body reveal">
-                <h1 id="tanim" style="font-size:var(--nx-fs-3xl); color:var(--nx-blue); margin-bottom:var(--nx-sp-6);">Linux Nedir?</h1>
-                
-                <p>Linux, bilgisayarlar, sunucular, akıllı telefonlar (Android aracılığıyla), gömülü sistemler ve hatta arabalar dâhil olmak üzere sayısız cihazda çalışan, UNIX benzeri açık kaynaklı bir işletim sistemi çekirdeğidir (kernel). Linus Torvalds tarafından 1991 yılında geliştirilen Linux, bugün dünyadaki en büyük ortak çalışma yazılım projesidir.</p>
-
-                <h2 id="cekirdek">İşletim Sistemi Değil, Çekirdek (Kernel)</h2>
-                <p>Çoğu zaman "Linux" denildiğinde tam teşekküllü bir işletim sistemi (örneğin Ubuntu, Fedora) kastedilse de, teknik olarak Linux <strong>sadece bir kernel'dir</strong>. Kernel, cihazın donanımı (CPU, RAM, Disk) ile yazılımı arasındaki iletişimi sağlayan temel çekirdektir.</p>
-                <p>Bir Linux işletim sistemi oluşturmak için Linux çekirdeğinin üzerine GNU projesinden gelen temel araçlar, masaüstü ortamları (GNOME, KDE) ve kullanıcı yazılımları (Tarayıcı, LibreOffice vb.) eklenir. Bu paket halinde sunulan bütüne <strong>Linux Dağıtımı (Distribution / Distro)</strong> denir.</p>
-
-                <h2 id="acik-kaynak">Açık Kaynak (Open Source) Felsefesi</h2>
-                <p>Linux sadece bir kod yığını değil, aynı zamanda bilgi paylaşımının manifestosudur. Açık kaynak kodlu demek, Linux çekirdeğinin kodlarının herkes tarafından okunabilir, değiştirilebilir ve dağıtılabilir olması anlamına gelir.</p>
-                
-                <div class="nx-alert" style="margin:var(--nx-sp-6) 0;">
-                    <strong><i class="fa-solid fa-shield-halved"></i> Gerçek Sistem Hâkimi Sizsiniz</strong><br><br>
-                    Kapalı kaynaklı sistemlerde arka planda telemetri verilerinizin neden toplandığını bilemez veya sistemi engelleyemezsiniz. Linux'ta ise kod açıktır; isterseniz bir servisi silebilir, çekirdeği yeniden derleyebilir, her şeyi şeffaf bir şekilde yönetebilirsiniz.
+            <h2 style="color:var(--nx-cyan);">Dagitim (Distribution) Nedir?</h2>
+            <p>Linux cekirdegi tek basina bir isletim sistemi degildir. Cekirdek + GNU araclari + paket yoneticisi + masaustu ortami = <strong>dagitim</strong>. Her dagitim farkli bir amaca yonelik paketlenistir:</p>
+            
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--nx-sp-4); margin:var(--nx-sp-6) 0;">
+                <div class="nx-card" style="padding:var(--nx-sp-5); border-left:3px solid var(--nx-green);">
+                    <strong style="color:var(--nx-green);">Ubuntu</strong>
+                    <p class="text-muted" style="font-size:var(--nx-fs-sm); margin:var(--nx-sp-2) 0 0;">Yeni baslayanlar icin ideal, genis topluluk</p>
                 </div>
-
-                <h2 id="avantajlar">Temel Avantajları</h2>
-                <div class="grid grid-2 gap-5" style="margin-top:var(--nx-sp-5);">
-                    <div class="nx-card-glow" style="padding:var(--nx-sp-6);">
-                        <div class="nx-icon-box nx-icon-box-green mb-3" style="width:42px; height:42px;"><i class="fa-solid fa-shield"></i></div>
-                        <h4>Yüksek Güvenlik</h4>
-                        <p class="text-muted mb-0" style="font-size:var(--nx-fs-sm);">Dosya izinleri ve modüler yapısı sayesinde virüslere karşı çok dirençlidir.</p>
-                    </div>
-                    <div class="nx-card-glow" style="padding:var(--nx-sp-6);">
-                        <div class="nx-icon-box nx-icon-box-blue mb-3" style="width:42px; height:42px;"><i class="fa-solid fa-server"></i></div>
-                        <h4>Stabilite</h4>
-                        <p class="text-muted mb-0" style="font-size:var(--nx-fs-sm);">Linux sistemleri yeniden başlatılmadan yıllarca açık kalabilir.</p>
-                    </div>
-                    <div class="nx-card-glow" style="padding:var(--nx-sp-6);">
-                        <div class="nx-icon-box nx-icon-box-purple mb-3" style="width:42px; height:42px;"><i class="fa-solid fa-laptop-code"></i></div>
-                        <h4>Geliştirici Dostu</h4>
-                        <p class="text-muted mb-0" style="font-size:var(--nx-fs-sm);">Tüm yazılımcı araçlarına tek terminal komutuyla erişilir.</p>
-                    </div>
-                    <div class="nx-card-glow" style="padding:var(--nx-sp-6);">
-                        <div class="nx-icon-box nx-icon-box-cyan mb-3" style="width:42px; height:42px;"><i class="fa-solid fa-leaf"></i></div>
-                        <h4>Özgürlük</h4>
-                        <p class="text-muted mb-0" style="font-size:var(--nx-fs-sm);">Lisans ücreti yok. %99'u tamamen ücretsizdir.</p>
-                    </div>
+                <div class="nx-card" style="padding:var(--nx-sp-5); border-left:3px solid var(--nx-red);">
+                    <strong style="color:var(--nx-red);">Arch Linux</strong>
+                    <p class="text-muted" style="font-size:var(--nx-fs-sm); margin:var(--nx-sp-2) 0 0;">Tam kontrol, minimalist, rolling release</p>
                 </div>
-
-                <div class="text-center mt-10">
-                    <a href="index.php?page=history" class="btn-gradient">
-                        Linux'un Tarihçesini Öğren <i class="fa-solid fa-arrow-right" style="margin-left:6px;"></i>
-                    </a>
+                <div class="nx-card" style="padding:var(--nx-sp-5); border-left:3px solid var(--nx-amber);">
+                    <strong style="color:var(--nx-amber);">Kali Linux</strong>
+                    <p class="text-muted" style="font-size:var(--nx-fs-sm); margin:var(--nx-sp-2) 0 0;">Siber guvenlik ve penetrasyon testleri</p>
                 </div>
-            </article>
+                <div class="nx-card" style="padding:var(--nx-sp-5); border-left:3px solid var(--nx-blue);">
+                    <strong style="color:var(--nx-blue);">Fedora</strong>
+                    <p class="text-muted" style="font-size:var(--nx-fs-sm); margin:var(--nx-sp-2) 0 0;">Yenilikci, acik kaynak felsefesi</p>
+                </div>
+            </div>
+
+            <h2 style="color:var(--nx-green);">Neden Linux?</h2>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--nx-sp-4); margin:var(--nx-sp-6) 0;">
+                <div class="nx-card" style="padding:var(--nx-sp-6); text-align:center;">
+                    <i class="fa-solid fa-lock" style="font-size:1.5rem; color:var(--nx-green); margin-bottom:var(--nx-sp-3);"></i>
+                    <h4 style="font-size:var(--nx-fs-base);">Guvenlik</h4>
+                    <p class="text-muted" style="font-size:var(--nx-fs-xs);">Izin sistemi, acik kaynak denetimi, minimal saldiri yuzeyi</p>
+                </div>
+                <div class="nx-card" style="padding:var(--nx-sp-6); text-align:center;">
+                    <i class="fa-solid fa-gauge-high" style="font-size:1.5rem; color:var(--nx-blue); margin-bottom:var(--nx-sp-3);"></i>
+                    <h4 style="font-size:var(--nx-fs-base);">Performans</h4>
+                    <p class="text-muted" style="font-size:var(--nx-fs-xs);">Dusuk kaynak tuketimi, eski donanimlarda bile hizli</p>
+                </div>
+                <div class="nx-card" style="padding:var(--nx-sp-6); text-align:center;">
+                    <i class="fa-solid fa-palette" style="font-size:1.5rem; color:var(--nx-purple); margin-bottom:var(--nx-sp-3);"></i>
+                    <h4 style="font-size:var(--nx-fs-base);">Ozellestirme</h4>
+                    <p class="text-muted" style="font-size:var(--nx-fs-xs);">Masaustunden cekirdeğe kadar her sey degisltirilebilir</p>
+                </div>
+                <div class="nx-card" style="padding:var(--nx-sp-6); text-align:center;">
+                    <i class="fa-solid fa-users" style="font-size:1.5rem; color:var(--nx-cyan); margin-bottom:var(--nx-sp-3);"></i>
+                    <h4 style="font-size:var(--nx-fs-base);">Topluluk</h4>
+                    <p class="text-muted" style="font-size:var(--nx-fs-xs);">Milyonlarca gelistirici, 20.000+ katkilci</p>
+                </div>
+            </div>
+
+            <h2 style="color:var(--nx-purple);">Acik Kaynak Felsefesi</h2>
+            <p>Linux'un kaynak kodu herkese aciktir. Bu, herkesin kodu inceleyip, katkida bulunup, kendi versiyonunu olusturabillecegi anlamina gelir. GPL lisansi altinda dagitilan Linux, "ozgur yazilim" hareketinin en buyuk basari hikayesidir.</p>
+            
+            <div class="nx-alert nx-alert-green" style="margin-top:var(--nx-sp-6);">
+                <strong><i class="fa-solid fa-quote-left"></i> "Talk is cheap. Show me the code."</strong>
+                <p style="margin:var(--nx-sp-2) 0 0; color:var(--nx-text-muted); font-size:var(--nx-fs-sm);">— Linus Torvalds, Linux Cekirdeğinin Yaraticisi</p>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center mt-10 reveal">
+            <a href="index.php?page=distros" class="btn-gradient btn-lg"><i class="fa-solid fa-th-large"></i> Dagitimlari Kesfet</a>
+            <a href="index.php?page=quiz" class="btn-outline btn-lg" style="margin-left:var(--nx-sp-4);"><i class="fa-solid fa-wand-magic-sparkles"></i> Quiz</a>
         </div>
     </div>
 </section>

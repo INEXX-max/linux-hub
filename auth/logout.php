@@ -1,15 +1,14 @@
 <?php
-// auth/logout.php
-
+// auth/logout.php — NEXOS Logout
+session_start();
 session_unset();
 session_destroy();
-session_start(); // Flash mesajı atayabilmek için yeni bir oturum başlat
+session_start();
 
-$_SESSION['flash'] = [
-    'type' => 'success',
-    'message' => 'Başarıyla çıkış yaptınız. Görüşmek üzere!'
+$_SESSION['flash_msg'] = [
+    'type' => 'info',
+    'message' => 'Oturumunuz kapatildi.'
 ];
 
 header("Location: index.php?page=home");
 exit;
-?>

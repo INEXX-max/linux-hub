@@ -1,52 +1,62 @@
 <?php
-// pages/use_cases.php — NEXOS Use Cases
+// pages/use_cases.php — NEXOS Use Cases (Apple-style)
 require_once 'includes/header.php';
 require_once 'includes/section-title.php';
 ?>
 
-<section class="nx-page-hero nx-bg-grid">
-    <div class="container">
-        <div class="nx-hero-label mx-auto" style="display:inline-flex;"><i class="fa-solid fa-compass"></i> Senaryolar</div>
-        <h1 class="nx-text-gradient-static">İhtiyaca Göre Linux</h1>
-        <p>"En iyi Linux dağıtımı hangisi?" sorusunun tek cevabı yoktur. Cevap tamamen onu ne için kullanacağınıza bağlıdır.</p>
+<section class="nx-section" style="padding-top:var(--nx-sp-20);">
+    <div class="container" style="max-width:800px;">
+        <div class="text-center reveal">
+            <div class="nx-label" style="display:inline-flex; align-items:center; gap:8px; padding:6px 18px; background:var(--nx-purple-subtle); color:var(--nx-purple); border-radius:var(--nx-radius-full); font-size:var(--nx-fs-xs); font-weight:700; text-transform:uppercase; letter-spacing:1px; border:1px solid rgba(139,92,246,0.2);">
+                <i class="fa-solid fa-lightbulb"></i> Senaryolar
+            </div>
+            <h1 style="font-size:var(--nx-fs-hero); font-weight:800; margin-top:var(--nx-sp-5); line-height:1.1;">
+                Linux <span class="nx-text-gradient">Nerede</span> Kullanilir?
+            </h1>
+            <p class="text-muted" style="font-size:var(--nx-fs-lg); max-width:560px; margin:var(--nx-sp-5) auto 0;">
+                Sunuculardan akilli telefonlara, uzay araclarindan super bilgisayarlara.
+            </p>
+        </div>
     </div>
 </section>
 
 <section class="nx-section-sm">
-    <div class="container">
-        <div style="display:flex; flex-direction:column; gap:var(--nx-sp-8);">
-            <?php
-            $scenarios = [
-                ['icon' => 'fa-solid fa-code', 'color' => 'blue', 'title' => 'Yazılım Geliştirme', 'desc' => 'Docker ve Kubernetes gibi günümüzün standart altyapıları yerel olarak Linux üzerinde çalışır. Python, Rust, Go, C++ derleyicileri kutudan çıkar.', 'distros' => 'Ubuntu, Fedora, Arch Linux'],
-                ['icon' => 'fa-solid fa-gamepad', 'color' => 'purple', 'title' => 'Oyun & Eğlence', 'desc' => 'Valve\'in Proton uyumluluk katmanı ile Steam kütüphanenizin %85+\'ı Linux\'ta çalışıyor. Steam Deck tamamen Linux tabanlı.', 'distros' => 'Pop!_OS, Nobara, ChimeraOS'],
-                ['icon' => 'fa-solid fa-mask', 'color' => 'pink', 'title' => 'Siber Güvenlik', 'desc' => 'Ağ trafiğini manipüle etme ve zafiyet analizi araçları Linux çekirdeğinden doğrudan güç alır. Binlerce önceden kurulu araç.', 'distros' => 'Kali Linux, Parrot OS'],
-                ['icon' => 'fa-solid fa-server', 'color' => 'amber', 'title' => 'Sunucu ve Bulut', 'desc' => 'GUI olmadan 100MB RAM ile yıllarca kapatılmadan hizmet veren Linux sunucuları, internetin omurgasını oluşturur.', 'distros' => 'Debian, Ubuntu Server, Alpine Linux'],
-                ['icon' => 'fa-solid fa-laptop-medical', 'color' => 'green', 'title' => 'Eski Bilgisayarları Diriltmek', 'desc' => '15 yıllık bir laptop bile hafif bir Linux dağıtımı ve SSD ile yeni gibi çalışabilir.', 'distros' => 'Lubuntu, Xubuntu, Linux Lite'],
-            ];
-            foreach($scenarios as $s):
-            ?>
-            <div class="nx-scenario-card reveal" style="border-left-color:var(--nx-<?= $s['color'] ?>);">
-                <div class="nx-scenario-icon nx-icon-box-<?= $s['color'] ?>" style="width:80px; height:80px; font-size:2.2rem;">
-                    <i class="<?= $s['icon'] ?>"></i>
+    <div class="container" style="max-width:900px;">
+        <?php
+        $scenarios = [
+            ['icon' => 'fa-solid fa-code', 'color' => 'blue', 'title' => 'Yazilim Gelistirme', 'desc' => 'Docker, Kubernetes, Git, CI/CD — modern yazilim gelistirmenin tum araclari Linux icin olusturulmustur. VS Code, JetBrains IDE\'leri ve terminal araclari ile kusursuz calisir.', 'stat' => '%87', 'statLabel' => 'gelistirici Linux kullanir'],
+            ['icon' => 'fa-solid fa-gamepad', 'color' => 'purple', 'title' => 'Oyun', 'desc' => 'Steam Proton ve Valve\'in yatirimlariyla Linux oyun platformu olarak buyuyor. Steam Deck tamamen Linux ile calisiyor. AAA oyunlarin %80\'i artik Linux uyumlu.', 'stat' => '%80', 'statLabel' => 'Steam oyunu uyumlu'],
+            ['icon' => 'fa-solid fa-shield-halved', 'color' => 'red', 'title' => 'Siber Guvenlik', 'desc' => 'Kali Linux, Parrot OS, BlackArch — penetrasyon testleri, adli bilisim, ag analizi icin ozel araclar. Dunnyanin en buyuk guvenlik konferanslarinda Linux kullanilir.', 'stat' => '600+', 'statLabel' => 'guvenlik araci'],
+            ['icon' => 'fa-solid fa-server', 'color' => 'amber', 'title' => 'Sunucu & Bulut', 'desc' => 'AWS, Azure, Google Cloud — hepsinin temeli Linux. Internetteki web sitelerinin %96.3\'u Linux sunucularda calisir. Enterprise itibarlilikte Red Hat lider.', 'stat' => '%96.3', 'statLabel' => 'web sunucusu'],
+            ['icon' => 'fa-solid fa-microchip', 'color' => 'cyan', 'title' => 'Gomulu Sistemler & IoT', 'desc' => 'Akilli televizyonlar, router\'lar, arac bilgisayarlari, dronelar, robotlar — tumu Linux cekirdegi kullanir. Android da Linux tabali bir isletim sistemidir.', 'stat' => '3M+', 'statLabel' => 'Android cihaz'],
+        ];
+        foreach($scenarios as $i => $sc): 
+        ?>
+        <div class="reveal" style="display:grid; grid-template-columns:1fr 1fr; gap:var(--nx-sp-10); align-items:center; margin-bottom:var(--nx-sp-16); <?= $i % 2 === 1 ? 'direction:rtl;' : '' ?>">
+            <div style="<?= $i % 2 === 1 ? 'direction:ltr;' : '' ?>">
+                <div class="nx-icon-box nx-icon-box-<?= $sc['color'] ?>" style="margin-bottom:var(--nx-sp-5); width:56px; height:56px; font-size:1.4rem;">
+                    <i class="<?= $sc['icon'] ?>"></i>
                 </div>
-                <div class="nx-scenario-body">
-                    <h3 style="color:var(--nx-<?= $s['color'] ?>);"><?= $s['title'] ?></h3>
-                    <p><?= $s['desc'] ?></p>
-                    <div class="nx-scenario-tag"><strong>Öne Çıkan:</strong> <?= $s['distros'] ?></div>
+                <h2 style="font-size:var(--nx-fs-3xl); font-weight:800; margin-bottom:var(--nx-sp-4);"><?= $sc['title'] ?></h2>
+                <p class="text-muted" style="line-height:1.8; font-size:var(--nx-fs-md);"><?= $sc['desc'] ?></p>
+            </div>
+            <div style="<?= $i % 2 === 1 ? 'direction:ltr;' : '' ?> text-align:center;">
+                <div style="padding:var(--nx-sp-12); background:var(--nx-surface); border:1px solid var(--nx-border); border-radius:var(--nx-radius-xl);">
+                    <div style="font-size:clamp(3rem, 6vw, 4.5rem); font-weight:900; background:var(--nx-gradient-blue); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1;"><?= $sc['stat'] ?></div>
+                    <div style="font-size:var(--nx-fs-sm); color:var(--nx-text-dim); margin-top:var(--nx-sp-3); text-transform:uppercase; letter-spacing:1px; font-weight:600;"><?= $sc['statLabel'] ?></div>
                 </div>
             </div>
-            <?php endforeach; ?>
         </div>
+        <?php endforeach; ?>
+    </div>
+</section>
 
-        <!-- CTA -->
-        <div class="nx-cta-banner mt-12 reveal">
-            <h2>Kafanız mı Karıştı?</h2>
-            <p style="color:var(--nx-text-muted); max-width:500px; margin:0 auto var(--nx-sp-6) auto;">
-                Algoritma destekli testimiz ihtiyaçlarınızı analiz edip en uygun dağıtımı öneriyor.
-            </p>
-            <a href="index.php?page=quiz" class="btn-gradient btn-lg">
-                <i class="fa-solid fa-bolt"></i> Hangi Linux Bana Göre?
-            </a>
+<section class="nx-section-sm">
+    <div class="container" style="max-width:700px;">
+        <div class="nx-cta-banner reveal text-center">
+            <h2 style="font-size:var(--nx-fs-3xl);">Hangi senaryo <span class="nx-text-gradient">size uygun?</span></h2>
+            <p class="text-muted" style="margin:var(--nx-sp-4) auto var(--nx-sp-8); max-width:400px;">Quiz ile ihtiyaciniza en uygun dagitimiizi saniyeler icinde bulun.</p>
+            <a href="index.php?page=quiz" class="btn-gradient btn-lg"><i class="fa-solid fa-wand-magic-sparkles"></i> Teste Basla</a>
         </div>
     </div>
 </section>
