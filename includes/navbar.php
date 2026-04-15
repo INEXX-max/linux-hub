@@ -1,33 +1,42 @@
 <?php
-// includes/navbar.php
+// includes/navbar.php — NEXOS Premium Navigation
 ?>
-<nav class="navbar" style="border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(11,15,25,0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; padding: 15px 0;">
-    <div class="container d-flex justify-between align-center">
-        <a href="index.php?page=home" class="nav-logo" style="font-size:1.5rem; font-weight:bold; color:#fff; text-decoration:none;">
-            <i class="fa-brands fa-linux text-primary"></i> <span class="text-accent">Linux</span>Hub
+<nav class="nx-navbar" id="nexosNavbar">
+    <div class="nx-navbar-inner">
+        <!-- Logo -->
+        <a href="index.php?page=home" class="nx-logo">
+            <div class="nx-logo-icon"><i class="fa-brands fa-linux"></i></div>
+            <span class="nx-logo-text">NEXOS</span>
         </a>
         
-        <div class="nav-links d-flex align-center gap-20" id="navLinks">
-            <a href="index.php?page=what-is-linux">Linux Nedir?</a>
-            <a href="index.php?page=architecture">Mimari</a>
-            <a href="index.php?page=distros">Kütüphane</a>
-            <a href="index.php?page=use_cases">Senaryolar</a>
-            <a href="index.php?page=quiz" class="text-primary font-bold"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Quiz</a>
+        <!-- Navigation Links -->
+        <div class="nx-nav-links" id="navLinks">
+            <a href="index.php?page=what-is-linux" <?= ($page ?? '') === 'what-is-linux' ? 'class="active"' : '' ?>>Linux Nedir?</a>
+            <a href="index.php?page=architecture" <?= ($page ?? '') === 'architecture' ? 'class="active"' : '' ?>>Mimari</a>
+            <a href="index.php?page=distros" <?= ($page ?? '') === 'distros' ? 'class="active"' : '' ?>>Dağıtımlar</a>
+            <a href="index.php?page=history" <?= ($page ?? '') === 'history' ? 'class="active"' : '' ?>>Tarihçe</a>
+            <a href="index.php?page=use_cases" <?= ($page ?? '') === 'use_cases' ? 'class="active"' : '' ?>>Kullanım</a>
+            <a href="index.php?page=quiz" class="nx-nav-highlight" <?= ($page ?? '') === 'quiz' ? 'style="color:var(--nx-cyan)"' : '' ?>>
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Quiz
+            </a>
             
-            <?php if(isLoggedIn()): ?>
-                <a href="index.php?page=dashboard" class="btn-outline" style="padding: 5px 15px;"><i class="fa-solid fa-user-astronaut"></i> Panel</a>
-                <a href="index.php?page=logout" class="text-muted" style="font-size:0.9rem;">Çıkış</a>
-            <?php else: ?>
-                <a href="index.php?page=login" class="text-muted" style="margin-left:10px;">Giriş Yap</a>
-                <a href="index.php?page=register" class="btn-primary" style="padding: 5px 15px;">Kayıt Ol</a>
-            <?php endif; ?>
+            <!-- Auth Links -->
+            <div class="nx-nav-auth">
+                <?php if(isLoggedIn()): ?>
+                    <a href="index.php?page=dashboard" class="btn-outline btn-sm">
+                        <i class="fa-solid fa-terminal"></i> Panel
+                    </a>
+                    <a href="index.php?page=logout" class="btn-ghost btn-sm">Çıkış</a>
+                <?php else: ?>
+                    <a href="index.php?page=login" class="btn-ghost btn-sm">Giriş</a>
+                    <a href="index.php?page=register" class="btn-primary btn-sm">Kayıt Ol</a>
+                <?php endif; ?>
+            </div>
         </div>
+        
+        <!-- Mobile Toggle -->
+        <button class="nx-mobile-toggle" id="mobileMenuBtn" aria-label="Menü">
+            <i class="fa-solid fa-bars"></i>
+        </button>
     </div>
 </nav>
-
-<style>
-.nav-links a { color: var(--text-main); text-decoration: none; font-size:0.95rem; transition: 0.2s ease; }
-.nav-links a:hover { color: var(--primary-color); }
-.gap-20 { gap: 20px; }
-.font-bold { font-weight: 600; }
-</style>

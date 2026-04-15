@@ -1,0 +1,128 @@
+/* ============================================
+   NEXOS — History / Timeline Styles
+   ============================================ */
+
+.nx-timeline {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  padding: var(--nx-sp-8) 0;
+}
+
+/* Center line */
+.nx-timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, var(--nx-border-light) 10%, var(--nx-border-light) 90%, transparent);
+  transform: translateX(-50%);
+}
+
+.nx-timeline-item {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: var(--nx-sp-12);
+}
+
+/* Timeline dot */
+.nx-timeline-dot {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--nx-blue);
+  border: 3px solid var(--nx-black);
+  z-index: 2;
+  box-shadow: 0 0 0 4px var(--nx-blue-subtle), 0 0 20px rgba(79,143,255,0.20);
+  transition: all 0.3s ease;
+}
+.nx-timeline-item:hover .nx-timeline-dot {
+  box-shadow: 0 0 0 6px var(--nx-blue-subtle), 0 0 30px rgba(79,143,255,0.35);
+  transform: translateX(-50%) scale(1.2);
+}
+.nx-timeline-dot.green {
+  background: var(--nx-green);
+  box-shadow: 0 0 0 4px var(--nx-green-subtle), 0 0 20px rgba(16,185,129,0.20);
+}
+.nx-timeline-dot.amber {
+  background: var(--nx-amber);
+  box-shadow: 0 0 0 4px var(--nx-amber-subtle), 0 0 20px rgba(245,158,11,0.20);
+}
+.nx-timeline-dot.purple {
+  background: var(--nx-purple);
+  box-shadow: 0 0 0 4px var(--nx-purple-subtle), 0 0 20px rgba(139,92,246,0.20);
+}
+
+/* Content panels */
+.nx-timeline-left {
+  width: 45%;
+  text-align: right;
+  padding-right: var(--nx-sp-8);
+}
+.nx-timeline-right {
+  width: 45%;
+  text-align: left;
+  padding-left: var(--nx-sp-8);
+  margin-left: auto;
+}
+.nx-timeline-spacer {
+  width: 45%;
+}
+
+.nx-timeline-card {
+  background: var(--nx-surface);
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-radius-md);
+  padding: var(--nx-sp-6);
+  transition: all 0.3s var(--nx-ease);
+}
+.nx-timeline-card:hover {
+  border-color: var(--nx-border-light);
+  box-shadow: var(--nx-shadow-card-hover);
+  transform: translateY(-2px);
+}
+.nx-timeline-card h3 {
+  font-size: var(--nx-fs-lg);
+  margin-bottom: var(--nx-sp-3);
+}
+.nx-timeline-card p {
+  font-size: var(--nx-fs-sm);
+  color: var(--nx-text-muted);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — TIMELINE
+   ═══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .nx-timeline::before {
+    left: 24px;
+  }
+  .nx-timeline-item {
+    flex-direction: column;
+    padding-left: 56px;
+  }
+  .nx-timeline-dot {
+    left: 24px;
+    top: 0;
+  }
+  .nx-timeline-left,
+  .nx-timeline-right,
+  .nx-timeline-spacer {
+    width: 100%;
+    text-align: left;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+  }
+  .nx-timeline-spacer {
+    display: none;
+  }
+}

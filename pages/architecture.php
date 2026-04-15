@@ -1,89 +1,85 @@
 <?php
-// pages/architecture.php
+// pages/architecture.php — NEXOS Architecture Page
 require_once 'includes/header.php';
+require_once 'includes/section-title.php';
 ?>
 
-<div class="container mt-5 mb-5">
-    
-    <div class="text-center mb-5">
-        <h1 class="text-primary" style="font-size: 2.8rem;">İçeride Neler Oluyor?</h1>
-        <p class="text-muted" style="font-size: 1.1rem;">Linux Mimarisi, her bir donanımın ve yazılımın mükemmel bir hiyerarşi içinde nasıl iletişim kurduğunu gösteren muazzam bir mühendislik harikasıdır.</p>
+<section class="nx-page-hero nx-bg-grid">
+    <div class="container">
+        <div class="nx-hero-label mx-auto" style="display:inline-flex;"><i class="fa-solid fa-layer-group"></i> Sistem Mimarisi</div>
+        <h1 class="nx-text-gradient-static">İçeride Neler Oluyor?</h1>
+        <p>Linux Mimarisi — her donanımın ve yazılımın mükemmel bir hiyerarşi içinde iletişim kurduğu mühendislik harikası.</p>
     </div>
+</section>
 
-    <!-- Mimari Katmanları Görselleştirmesi -->
-    <div class="architecture-layers" style="max-width: 600px; margin: 0 auto 50px auto; text-align:center;">
+<section class="nx-section-sm">
+    <div class="container">
+        <!-- Architecture Layers -->
+        <div class="nx-arch-stack reveal">
+            <div class="nx-arch-layer" style="background:var(--nx-purple); border:2px solid var(--nx-purple); border-radius:var(--nx-radius-md) var(--nx-radius-md) 0 0;">
+                <i class="fa-solid fa-window-restore"></i> User Space (Uygulamalar, GUI, Tarayıcılar)
+            </div>
+            <div class="nx-arch-layer" style="background:var(--nx-cyan); border:2px solid var(--nx-cyan); border-top:none;">
+                <i class="fa-solid fa-terminal"></i> Shell (Bash/Zsh) & GNU Araçları
+            </div>
+            <div class="nx-arch-layer" style="background:var(--nx-red); border:2px solid var(--nx-red); border-top:none; padding:var(--nx-sp-8);">
+                <i class="fa-solid fa-heart-pulse"></i> Linux Kernel (Çekirdek)
+                <div class="nx-arch-layer-sub">Bellek Yönetimi, Süreçler, Sürücüler, Ağ Yığını</div>
+            </div>
+            <div class="nx-arch-layer" style="background:var(--nx-surface-3); border:2px solid var(--nx-surface-3); border-top:none; border-radius:0 0 var(--nx-radius-md) var(--nx-radius-md); display:flex; justify-content:center; gap:var(--nx-sp-6);">
+                <span><i class="fa-solid fa-microchip"></i> CPU</span>
+                <span><i class="fa-solid fa-memory"></i> RAM</span>
+                <span><i class="fa-solid fa-hard-drive"></i> SSD</span>
+                <span><i class="fa-solid fa-wifi"></i> NIC</span>
+            </div>
+        </div>
+
+        <!-- Details Grid -->
+        <?php sectionTitle('Bileşenler', 'Temel Mimari Bileşenler', 'Linux sisteminin her katmanını derinlemesine anlayın.'); ?>
         
-        <!-- User Space / GUI -->
-        <div class="layer-gui" style="background:#575fcf; padding: 20px; border-radius: 12px 12px 0 0; border: 2px solid #575fcf; font-weight:bold; font-size:1.2rem; color:#fff;">
-            User Space (Uygulamalar, GUI, Tarayıcılar)
-        </div>
-        
-        <!-- Shell & Utilities (GNU) -->
-        <div class="layer-shell" style="background:#0fb9b1; padding: 15px; border-left: 2px solid #0fb9b1; border-right: 2px solid #0fb9b1; font-weight:bold; color:#fff;">
-            Shell (Bash / Zsh) & GNU Araçları
-        </div>
-
-        <!-- The Kernel Space -->
-        <div class="layer-kernel" style="background:#f53b57; padding: 25px; border-left: 2px solid #f53b57; border-right: 2px solid #f53b57; font-weight:bold; font-size:1.3rem; color:#fff;">
-            Linux Kernel (Çekirdek - Kalp)
-            <div style="font-size:0.85rem; font-weight:normal; margin-top:5px; color:#f8d5d8;">Bellek Yönetimi, Süreçler, Sürücüler, Ağ</div>
-        </div>
-
-        <!-- Hardware -->
-        <div class="layer-hw" style="background:#485460; padding: 20px; border-radius: 0 0 12px 12px; border: 2px solid #485460; font-weight:bold; color:#fff; display:flex; justify-content:center; gap:20px;">
-            <span><i class="fa-solid fa-microchip"></i> CPU</span>
-            <span><i class="fa-solid fa-memory"></i> RAM</span>
-            <span><i class="fa-solid fa-hard-drive"></i> SSD</span>
+        <div class="grid grid-3 gap-6 reveal-stagger">
+            <?php
+            $components = [
+                ['icon' => 'fa-solid fa-heart-pulse', 'color' => 'red', 'title' => 'Kernel (Çekirdek)', 'desc' => 'Donanım ile doğrudan iletişim kuran sistemin beynidir. Memory management, süreç planlama ve donanım sürücüleri burada bulunur.'],
+                ['icon' => 'fa-solid fa-terminal', 'color' => 'cyan', 'title' => 'Shell (Kabuk)', 'desc' => 'Kullanıcı komutlarını kernel\'ın anlayacağı dile çeviren arayüz. Bash en yaygınıdır. GUI çökse bile sistem Shell ile çalışır.'],
+                ['icon' => 'fa-solid fa-folder-tree', 'color' => 'amber', 'title' => 'Dosya Sistemi', 'desc' => 'Her şey kök dizinden (/) başlar. /home kullanıcı dosyalarını, /etc ayar dosyalarını tutar. "Her şey bir dosyadır" felsefesi.'],
+                ['icon' => 'fa-solid fa-box-open', 'color' => 'green', 'title' => 'Paket Yöneticileri', 'desc' => 'APT, DNF, Pacman — güvenli depolardan tek komutla yazılım kurulumu. .exe arayıp virüs riski yok.'],
+                ['icon' => 'fa-solid fa-users-gear', 'color' => 'purple', 'title' => 'Root ve İzin Sistemi', 'desc' => 'En tepede root kullanıcısı. Normal kullanıcılar sudo izni olmadan sisteme zarar veremez.'],
+                ['icon' => 'fa-solid fa-window-restore', 'color' => 'blue', 'title' => 'GUI vs CLI', 'desc' => 'Masaüstü ortamı (GNOME/KDE) sadece kernel üstünde çalışan programlardır. Sunucularda GUI olmaz.'],
+            ];
+            foreach($components as $c):
+            ?>
+            <div class="nx-card-glow reveal" style="padding:var(--nx-sp-6);">
+                <div class="nx-icon-box nx-icon-box-<?= $c['color'] ?> mb-4"><i class="<?= $c['icon'] ?>"></i></div>
+                <h4><?= $c['title'] ?></h4>
+                <p class="text-muted mb-0" style="font-size:var(--nx-fs-sm);"><?= $c['desc'] ?></p>
+            </div>
+            <?php endforeach; ?>
         </div>
 
+        <!-- Reliability -->
+        <div class="mt-12 reveal">
+            <h2 class="text-cyan mb-6" style="border-bottom:1px solid var(--nx-border); padding-bottom:var(--nx-sp-3);">Neden Güvenilir?</h2>
+            <div style="display:flex; flex-direction:column; gap:var(--nx-sp-5);">
+                <?php
+                $points = [
+                    ['title' => 'İzole Süreçler', 'desc' => 'Bir program çökerse sadece kendisi kapanır. Sistem mavi ekrana girmez.'],
+                    ['title' => 'Açık Kaynak Güvenlik', 'desc' => 'Güvenlik açığı bulunduğunda dakikalar içinde yamalanabilir.'],
+                    ['title' => 'Sıfır Parçalanma', 'desc' => 'EXT4/BTRFS dosya sistemleri defrag gerektirmez, yıllarca %100 hızda çalışır.'],
+                ];
+                foreach($points as $p):
+                ?>
+                <div class="d-flex gap-4 items-start">
+                    <i class="fa-solid fa-circle-check text-primary" style="margin-top:5px;"></i>
+                    <div>
+                        <strong><?= $p['title'] ?>:</strong>
+                        <span class="text-muted"> <?= $p['desc'] ?></span>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
     </div>
-
-    <!-- Detaylı Açıklamalar Grid -->
-    <div class="architecture-details">
-        
-        <h2 class="mb-4 text-accent" style="border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">Temel Bileşenler</h2>
-
-        <div class="layout-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-            <div class="card">
-                <h4><i class="fa-solid fa-heart-pulse text-primary"></i> The Kernel (Çekirdek)</h4>
-                <p class="text-muted" style="font-size:0.95rem;">Donanım ile doğrudan iletişim kuran sistemin beynidir. Memory management (RAM tahsisi), süreç (process) planlama, donanım sürücüleri (drivers) burada bulunur. Sistemin donmaması büyük oranda bu katmanın güvenilirliğindendir.</p>
-            </div>
-            
-            <div class="card">
-                <h4><i class="fa-solid fa-terminal text-primary"></i> Shell (Kabuk)</h4>
-                <p class="text-muted" style="font-size:0.95rem;">Kullanıcı komutlarını alıp kernel'ın anlayacağı dile çeviren arayüzdür. <code>Bash</code> en yaygın olanıdır. Grafiksel ortam (GUI) çökse bile sistem arkada Shell ile mükemmel çalışmaya devam eder.</p>
-            </div>
-
-            <div class="card">
-                <h4><i class="fa-solid fa-folder-tree text-primary"></i> Dosya Sistemi Hiyerarşisi</h4>
-                <p class="text-muted" style="font-size:0.95rem;">Windows'taki (C: veya D:) sürücü harfleri burada yoktur. Her şey kök dizinden <code>/</code> (Root) başlar. <code>/home</code> kullanıcı dosyalarını, <code>/etc</code> ayar dosyalarını, <code>/var</code> logları tutar. "Her şey bir dosyadır" felsefesi esastır.</p>
-            </div>
-            
-            <div class="card">
-                <h4><i class="fa-solid fa-box-open text-primary"></i> Paket Yöneticileri (Package Manager)</h4>
-                <p class="text-muted" style="font-size:0.95rem;">Yazılım kurmanın güvenli yoludur. <code>APT</code> (Debian/Ubuntu), <code>DNF</code> (Fedora) veya <code>Pacman</code> (Arch). İnternette ".exe" arayıp virüs tehlikesi yaşamak yerine, güvenli resmi depolardan komutla bağımlılık sorunları yaşanmadan yazılım kurmanızı sağlar.</p>
-            </div>
-
-            <div class="card">
-                <h4><i class="fa-solid fa-users-gear text-primary"></i> Root ve İzin Sistemi</h4>
-                <p class="text-muted" style="font-size:0.95rem;">Linux çok kullanıcılı (multi-user) olarak doğmuştur. En tepede Tanrı yetkisi olan <strong><code>root</code></strong> kullanıcısı vardır. Normal kullanıcılar zararlı bir dosya indirse bile <code>sudo</code> (root izni) olmadan o dosya sisteme hiçbir zarar veremez.</p>
-            </div>
-
-            <div class="card">
-                <h4><i class="fa-solid fa-window-restore text-primary"></i> GUI vs CLI Farkları</h4>
-                <p class="text-muted" style="font-size:0.95rem;">Windows'ta Masaüstü ortadan kalkarsa sistem kullanılamaz. Linux'ta Ekran Görüntü Sunucusu (Xorg/Wayland) ve Masaüstü ortamı (GNOME/KDE) sadece kernel üstünde çalışan sıradan programlardır. İstenirse silinebilir (Sunucularda GUI olmaz).</p>
-            </div>
-        </div>
-
-        <h2 class="mt-5 mb-4 text-accent" style="border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">Neden Yenilmez (Güvenilir)?</h2>
-        <ul style="list-style:none; padding-left:10px;">
-            <li class="mb-3 d-flex"><i class="fa-solid fa-circle-check text-primary" style="margin-top:5px; margin-right:15px;"></i> <div><strong>İzole Süreçler (Process Isolation):</strong> Bir program (örneğin Firefox) çökerse, sadece kendisi kapanır. Belleği bozan uygulama tüm sistemi mavi ekrana (kernel panic) sokmaz.</div></li>
-            <li class="mb-3 d-flex"><i class="fa-solid fa-circle-check text-primary" style="margin-top:5px; margin-right:15px;"></i> <div><strong>Geliştirici Odaklı (Developer Friendly):</strong> Açık kaynaklı olduğu için dünya çapındaki siber güvenlikçiler (Pentester, Hackerlar) güvenlik açığı bulduğunda, bunu Microsoft gibi aylarca bekletmeden dakikalar içinde yamalayabilir.</div></li>
-            <li class="mb-3 d-flex"><i class="fa-solid fa-circle-check text-primary" style="margin-top:5px; margin-right:15px;"></i> <div><strong>Sıfır Parçalanma:</strong> NT dosya sistemi gibi Disk Birleştirme (Defrag) gerektirmez. EXT4 / BTRFS dosya sistemleri verileri öyle bir yazar ki, hiçbir zaman fragmentasyona uğramaz ve yıllarca %100 hızda çalışır.</div></li>
-        </ul>
-
-    </div>
-
-</div>
+</section>
 
 <?php require_once 'includes/footer.php'; ?>

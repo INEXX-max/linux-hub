@@ -1,0 +1,282 @@
+/* ============================================
+   NEXOS — Animations & Effects
+   Scroll Reveal, Keyframes, Hover, Parallax
+   ============================================ */
+
+/* ═══════════════════════════════════════
+   SCROLL REVEAL (IntersectionObserver)
+   ═══════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s var(--nx-ease), transform 0.7s var(--nx-ease);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Variant reveal directions */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s var(--nx-ease), transform 0.7s var(--nx-ease);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s var(--nx-ease), transform 0.7s var(--nx-ease);
+}
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.7s var(--nx-ease), transform 0.7s var(--nx-ease);
+}
+.reveal-left.revealed,
+.reveal-right.revealed,
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger delay for grid children */
+.reveal-stagger > *:nth-child(1)  { transition-delay: 0ms; }
+.reveal-stagger > *:nth-child(2)  { transition-delay: 80ms; }
+.reveal-stagger > *:nth-child(3)  { transition-delay: 160ms; }
+.reveal-stagger > *:nth-child(4)  { transition-delay: 240ms; }
+.reveal-stagger > *:nth-child(5)  { transition-delay: 320ms; }
+.reveal-stagger > *:nth-child(6)  { transition-delay: 400ms; }
+.reveal-stagger > *:nth-child(7)  { transition-delay: 480ms; }
+.reveal-stagger > *:nth-child(8)  { transition-delay: 560ms; }
+.reveal-stagger > *:nth-child(9)  { transition-delay: 640ms; }
+.reveal-stagger > *:nth-child(10) { transition-delay: 720ms; }
+
+/* ═══════════════════════════════════════
+   PAGE ENTRANCE ANIMATION
+   ═══════════════════════════════════════ */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+main {
+  animation: pageEnter 0.6s var(--nx-ease) forwards;
+}
+
+/* ═══════════════════════════════════════
+   FLOAT / HOVER EFFECTS
+   ═══════════════════════════════════════ */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+.nx-float {
+  animation: float 4s ease-in-out infinite;
+}
+.nx-float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+.nx-float-delay {
+  animation: float 4s ease-in-out 1s infinite;
+}
+
+/* ═══════════════════════════════════════
+   GLOW PULSE
+   ═══════════════════════════════════════ */
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+.nx-glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════
+   TYPING CURSOR
+   ═══════════════════════════════════════ */
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+.nx-cursor-blink {
+  animation: cursorBlink 1s step-end infinite;
+}
+
+/* ═══════════════════════════════════════
+   GRADIENT MOTION (Button shimmer)
+   ═══════════════════════════════════════ */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.nx-gradient-motion {
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+}
+
+/* ═══════════════════════════════════════
+   SPIN (Loading)
+   ═══════════════════════════════════════ */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.nx-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* ═══════════════════════════════════════
+   PARTICLE / GRID BACKGROUND
+   ═══════════════════════════════════════ */
+.nx-bg-grid {
+  position: relative;
+}
+.nx-bg-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(79, 143, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 143, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse 70% 50% at 50% 50%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 50% at 50% 50%, black 30%, transparent 80%);
+}
+
+/* Dot pattern variant */
+.nx-bg-dots::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(79, 143, 255, 0.06) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 20%, transparent 80%);
+}
+
+/* ═══════════════════════════════════════
+   GLOW ORBS (Decorative background)
+   ═══════════════════════════════════════ */
+.nx-glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+.nx-glow-orb-blue {
+  background: rgba(79, 143, 255, 0.12);
+  width: 500px;
+  height: 500px;
+}
+.nx-glow-orb-purple {
+  background: rgba(139, 92, 246, 0.10);
+  width: 400px;
+  height: 400px;
+}
+.nx-glow-orb-cyan {
+  background: rgba(34, 211, 238, 0.08);
+  width: 350px;
+  height: 350px;
+}
+
+/* ═══════════════════════════════════════
+   CARD ICON HOVER GLOW
+   ═══════════════════════════════════════ */
+.nx-icon-box {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--nx-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  transition: all 0.3s var(--nx-ease);
+  flex-shrink: 0;
+}
+.nx-icon-box-blue   { background: var(--nx-blue-subtle); color: var(--nx-blue); }
+.nx-icon-box-purple { background: var(--nx-purple-subtle); color: var(--nx-purple); }
+.nx-icon-box-cyan   { background: var(--nx-cyan-subtle); color: var(--nx-cyan); }
+.nx-icon-box-green  { background: var(--nx-green-subtle); color: var(--nx-green); }
+.nx-icon-box-amber  { background: var(--nx-amber-subtle); color: var(--nx-amber); }
+.nx-icon-box-pink   { background: var(--nx-pink-glow); color: var(--nx-pink); }
+.nx-icon-box-red    { background: var(--nx-red-subtle); color: var(--nx-red); }
+
+/* Hover glow for icon boxes */
+.nx-card-glow:hover .nx-icon-box-blue   { box-shadow: 0 0 20px rgba(79,143,255,0.25); }
+.nx-card-glow:hover .nx-icon-box-purple { box-shadow: 0 0 20px rgba(139,92,246,0.25); }
+.nx-card-glow:hover .nx-icon-box-cyan   { box-shadow: 0 0 20px rgba(34,211,238,0.25); }
+.nx-card-glow:hover .nx-icon-box-green  { box-shadow: 0 0 20px rgba(16,185,129,0.25); }
+.nx-card-glow:hover .nx-icon-box-amber  { box-shadow: 0 0 20px rgba(245,158,11,0.25); }
+
+/* ═══════════════════════════════════════
+   SLIDE IN (Used by flashMessages, quiz)
+   ═══════════════════════════════════════ */
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ═══════════════════════════════════════
+   COUNTER (Count-up number animation)
+   ═══════════════════════════════════════ */
+.nx-counter {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ═══════════════════════════════════════
+   MOUSE GLOW (follows cursor)
+   ═══════════════════════════════════════ */
+.nx-mouse-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 143, 255, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+.nx-mouse-glow.active {
+  opacity: 1;
+}
+
+/* Hero text gradient animation */
+@keyframes textGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+.nx-text-gradient {
+  background: linear-gradient(135deg, var(--nx-blue), var(--nx-cyan), var(--nx-purple), var(--nx-blue));
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textGradient 6s ease infinite;
+}
+.nx-text-gradient-static {
+  background: linear-gradient(135deg, #fff 0%, var(--nx-text-soft) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

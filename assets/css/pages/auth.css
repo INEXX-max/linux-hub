@@ -1,0 +1,111 @@
+/* ============================================
+   NEXOS — Auth Page Styles
+   Login, Register, Forgot Password
+   ============================================ */
+
+.nx-auth-wrapper {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--nx-sp-8) var(--nx-sp-4);
+  position: relative;
+}
+.nx-auth-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(79, 143, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.nx-auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--nx-surface);
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-radius-lg);
+  padding: var(--nx-sp-10);
+  position: relative;
+  z-index: 1;
+  box-shadow: var(--nx-shadow-xl);
+}
+.nx-auth-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(160deg, rgba(79,143,255,0.2) 0%, transparent 30%, transparent 70%, rgba(139,92,246,0.15) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.nx-auth-header {
+  text-align: center;
+  margin-bottom: var(--nx-sp-8);
+}
+.nx-auth-header .nx-auth-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--nx-radius-md);
+  background: var(--nx-blue-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: var(--nx-blue);
+  margin: 0 auto var(--nx-sp-5) auto;
+}
+.nx-auth-header h2 {
+  font-size: var(--nx-fs-2xl);
+  margin-bottom: var(--nx-sp-2);
+}
+.nx-auth-header p {
+  font-size: var(--nx-fs-sm);
+  color: var(--nx-text-muted);
+  margin-bottom: 0;
+}
+
+.nx-auth-form .form-control {
+  padding: 14px 18px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--nx-border);
+  font-size: var(--nx-fs-sm);
+}
+.nx-auth-form .form-control:focus {
+  border-color: var(--nx-blue);
+  box-shadow: 0 0 0 3px var(--nx-blue-glow);
+}
+
+.nx-auth-footer {
+  text-align: center;
+  margin-top: var(--nx-sp-6);
+  font-size: var(--nx-fs-sm);
+  color: var(--nx-text-muted);
+}
+.nx-auth-footer a {
+  color: var(--nx-blue);
+  font-weight: 600;
+}
+
+.nx-auth-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--nx-sp-4);
+  margin: var(--nx-sp-6) 0;
+  color: var(--nx-text-dim);
+  font-size: var(--nx-fs-xs);
+}
+.nx-auth-divider::before,
+.nx-auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--nx-border);
+}

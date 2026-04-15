@@ -1,0 +1,198 @@
+/* ============================================
+   NEXOS — Dashboard Styles
+   User panel, stats, favorites, activities
+   ============================================ */
+
+.nx-dashboard {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--nx-sp-8);
+  min-height: calc(100vh - 72px);
+}
+
+/* ═══════════════════════════════════════
+   SIDEBAR
+   ═══════════════════════════════════════ */
+.nx-dash-sidebar {
+  background: var(--nx-surface);
+  border-right: 1px solid var(--nx-border);
+  padding: var(--nx-sp-8) var(--nx-sp-5);
+  position: sticky;
+  top: 72px;
+  height: calc(100vh - 72px);
+  overflow-y: auto;
+}
+.nx-dash-sidebar-user {
+  text-align: center;
+  padding-bottom: var(--nx-sp-6);
+  border-bottom: 1px solid var(--nx-border);
+  margin-bottom: var(--nx-sp-6);
+}
+.nx-dash-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--nx-radius-full);
+  background: var(--nx-gradient-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: #fff;
+  margin: 0 auto var(--nx-sp-3) auto;
+  box-shadow: 0 4px 16px rgba(79,143,255,0.25);
+}
+.nx-dash-sidebar-user h4 {
+  font-size: var(--nx-fs-base);
+  margin-bottom: var(--nx-sp-1);
+}
+.nx-dash-sidebar-user p {
+  font-size: var(--nx-fs-xs);
+  color: var(--nx-text-dim);
+  margin-bottom: 0;
+}
+
+.nx-dash-nav {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.nx-dash-nav li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--nx-radius-sm);
+  color: var(--nx-text-muted);
+  font-size: var(--nx-fs-sm);
+  font-weight: 500;
+  transition: all var(--nx-t-fast);
+}
+.nx-dash-nav li a:hover {
+  background: rgba(255,255,255,0.04);
+  color: var(--nx-text);
+}
+.nx-dash-nav li a.active {
+  background: var(--nx-blue-subtle);
+  color: var(--nx-blue);
+}
+.nx-dash-nav li a i {
+  width: 20px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* ═══════════════════════════════════════
+   MAIN CONTENT
+   ═══════════════════════════════════════ */
+.nx-dash-main {
+  padding: var(--nx-sp-8);
+  max-width: 1000px;
+}
+
+/* Welcome banner */
+.nx-dash-welcome {
+  background: var(--nx-gradient-card);
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-radius-lg);
+  padding: var(--nx-sp-8);
+  display: flex;
+  align-items: center;
+  gap: var(--nx-sp-6);
+  margin-bottom: var(--nx-sp-8);
+  border-left: 4px solid var(--nx-blue);
+}
+.nx-dash-welcome-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--nx-radius-md);
+  background: var(--nx-blue-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: var(--nx-blue);
+  flex-shrink: 0;
+}
+.nx-dash-welcome h2 {
+  font-size: var(--nx-fs-2xl);
+  margin-bottom: var(--nx-sp-1);
+}
+.nx-dash-welcome p {
+  margin-bottom: 0;
+  font-size: var(--nx-fs-sm);
+  color: var(--nx-text-muted);
+}
+
+/* Stats grid */
+.nx-dash-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--nx-sp-5);
+  margin-bottom: var(--nx-sp-8);
+}
+.nx-dash-stat-card {
+  background: var(--nx-surface);
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-radius-md);
+  padding: var(--nx-sp-6);
+  display: flex;
+  align-items: center;
+  gap: var(--nx-sp-4);
+  transition: all 0.3s var(--nx-ease);
+}
+.nx-dash-stat-card:hover {
+  border-color: var(--nx-border-light);
+  transform: translateY(-2px);
+}
+.nx-dash-stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--nx-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.nx-dash-stat-card .stat-value {
+  font-size: var(--nx-fs-2xl);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+.nx-dash-stat-card .stat-label {
+  font-size: var(--nx-fs-xs);
+  color: var(--nx-text-muted);
+  margin-top: var(--nx-sp-1);
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — DASHBOARD
+   ═══════════════════════════════════════ */
+@media (max-width: 992px) {
+  .nx-dashboard {
+    grid-template-columns: 1fr;
+  }
+  .nx-dash-sidebar {
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--nx-border);
+  }
+  .nx-dash-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+}
+@media (max-width: 768px) {
+  .nx-dash-stats {
+    grid-template-columns: 1fr;
+  }
+  .nx-dash-welcome {
+    flex-direction: column;
+    text-align: center;
+  }
+}

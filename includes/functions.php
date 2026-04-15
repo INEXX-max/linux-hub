@@ -37,11 +37,16 @@ function displayFlashMessage() {
         if($type === 'success') $color = '#10b981';
         if($type === 'error') $color = '#ef4444';
         if($type === 'warning') $color = '#f59e0b';
+        if($type === 'info') $color = '#22d3ee';
         
-        echo "<div id='flash-message' style='background-color: {$color}; color: white; padding: 15px; text-align: center; position: fixed; top: 0; left: 0; width: 100%; z-index: 9999;'>";
-        echo $message;
+        $icon = 'fa-solid fa-circle-info';
+        if($type === 'success') $icon = 'fa-solid fa-circle-check';
+        if($type === 'error') $icon = 'fa-solid fa-circle-xmark';
+        if($type === 'warning') $icon = 'fa-solid fa-triangle-exclamation';
+        
+        echo "<div class='flash-message' id='flash-message' style='background: {$color}; border-left: 4px solid rgba(255,255,255,0.3);'>";
+        echo "<i class='{$icon}' style='margin-right:8px;'></i> {$message}";
         echo "</div>";
-        echo "<script>setTimeout(() => { document.getElementById('flash-message').style.display = 'none'; }, 4000);</script>";
         
         unset($_SESSION['flash_msg']);
     }

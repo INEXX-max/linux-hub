@@ -1,0 +1,422 @@
+/* ============================================
+   NEXOS — Home Page Styles
+   Hero, Stats, Use Cases, Companies, Terminal
+   ============================================ */
+
+/* ═══════════════════════════════════════
+   HERO SECTION
+   ═══════════════════════════════════════ */
+.nx-hero {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: var(--nx-gradient-hero);
+  overflow: hidden;
+  padding: var(--nx-sp-12) 0;
+}
+.nx-hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--nx-sp-12);
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.nx-hero-content {
+  max-width: 600px;
+}
+.nx-hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: var(--nx-blue-subtle);
+  border: 1px solid rgba(79, 143, 255, 0.15);
+  border-radius: var(--nx-radius-full);
+  font-size: var(--nx-fs-xs);
+  font-weight: 700;
+  color: var(--nx-blue);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--nx-sp-6);
+  animation: slideUp 0.6s var(--nx-ease) 0.1s both;
+}
+.nx-hero-title {
+  font-size: var(--nx-fs-hero);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--nx-sp-6);
+  animation: slideUp 0.6s var(--nx-ease) 0.2s both;
+}
+.nx-hero-subtitle {
+  font-size: var(--nx-fs-lg);
+  color: var(--nx-text-muted);
+  line-height: 1.7;
+  margin-bottom: var(--nx-sp-8);
+  max-width: 520px;
+  animation: slideUp 0.6s var(--nx-ease) 0.3s both;
+}
+.nx-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: slideUp 0.6s var(--nx-ease) 0.4s both;
+}
+.nx-hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: slideUp 0.8s var(--nx-ease) 0.3s both;
+}
+
+/* ── Linux Desktop Mockup ── */
+.nx-desktop-mockup {
+  width: 100%;
+  max-width: 560px;
+  position: relative;
+}
+.nx-monitor {
+  background: #0c0c14;
+  border: 2px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(255,255,255,0.03),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+  position: relative;
+}
+.nx-monitor::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(165deg, rgba(79,143,255,0.04) 0%, transparent 40%, rgba(139,92,246,0.03) 100%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+.nx-monitor-bar {
+  display: flex;
+  align-items: center;
+  padding: 8px 14px;
+  background: rgba(0,0,0,0.5);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  gap: 6px;
+}
+.nx-monitor-bar .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.nx-monitor-bar .dot.r { background: #ff5f56; }
+.nx-monitor-bar .dot.y { background: #ffbd2e; }
+.nx-monitor-bar .dot.g { background: #27c93f; }
+.nx-monitor-bar .title {
+  flex: 1;
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--nx-text-dim);
+  font-family: var(--nx-font-mono);
+}
+.nx-monitor-screen {
+  position: relative;
+  min-height: 320px;
+  overflow: hidden;
+}
+
+/* ── Floating windows inside mockup ── */
+.nx-float-window {
+  position: absolute;
+  background: rgba(22, 28, 45, 0.95);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.nx-float-window-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  background: rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.nx-float-window-bar .wdot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.nx-float-window-bar .wdot.r { background: #ff5f56; }
+.nx-float-window-bar .wdot.y { background: #ffbd2e; }
+.nx-float-window-bar .wdot.g { background: #27c93f; }
+.nx-float-window-bar .wtitle {
+  font-size: 0.6rem;
+  color: var(--nx-text-dim);
+  margin-left: 6px;
+}
+.nx-float-window-body {
+  padding: 10px;
+  font-family: var(--nx-font-mono);
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: var(--nx-text-soft);
+}
+
+/* ── Monitor Stand ── */
+.nx-monitor-stand {
+  width: 80px;
+  height: 30px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+  clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+}
+.nx-monitor-base {
+  width: 140px;
+  height: 8px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.04);
+  border-radius: 0 0 8px 8px;
+}
+
+/* ═══════════════════════════════════════
+   STATS BAR
+   ═══════════════════════════════════════ */
+.nx-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--nx-sp-6);
+}
+.nx-stats-bar .nx-stat {
+  border-right: 1px solid var(--nx-border);
+}
+.nx-stats-bar .nx-stat:last-child {
+  border-right: none;
+}
+
+/* ═══════════════════════════════════════
+   USE CASES GRID
+   ═══════════════════════════════════════ */
+.nx-usecase-card {
+  background: var(--nx-surface);
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-radius-md);
+  padding: var(--nx-sp-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--nx-sp-4);
+  transition: all 0.3s var(--nx-ease);
+  position: relative;
+  overflow: hidden;
+}
+.nx-usecase-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--nx-border-light);
+  box-shadow: var(--nx-shadow-card-hover);
+}
+.nx-usecase-card h4 {
+  font-size: var(--nx-fs-md);
+  margin-bottom: 0;
+}
+.nx-usecase-card p {
+  font-size: var(--nx-fs-sm);
+  color: var(--nx-text-muted);
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════
+   COMPANY LOGOS
+   ═══════════════════════════════════════ */
+.nx-company-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--nx-sp-6);
+}
+.nx-company-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 60px;
+  padding: 12px 20px;
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-radius-sm);
+  background: rgba(255,255,255,0.02);
+  color: var(--nx-text-dim);
+  font-weight: 700;
+  font-size: var(--nx-fs-sm);
+  transition: all 0.3s var(--nx-ease);
+  cursor: default;
+  position: relative;
+}
+.nx-company-logo:hover {
+  border-color: var(--nx-blue);
+  color: var(--nx-text);
+  background: var(--nx-blue-subtle);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 20px rgba(79,143,255,0.15);
+}
+.nx-company-logo .nx-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--nx-surface-2);
+  border: 1px solid var(--nx-border-light);
+  padding: 8px 14px;
+  border-radius: var(--nx-radius-sm);
+  font-size: var(--nx-fs-xs);
+  font-weight: 400;
+  color: var(--nx-text-soft);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+.nx-company-logo:hover .nx-tooltip {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════
+   DESKTOP PREVIEW TABS
+   ═══════════════════════════════════════ */
+.nx-de-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: var(--nx-sp-8);
+  flex-wrap: wrap;
+}
+.nx-de-tab {
+  padding: 10px 22px;
+  background: transparent;
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-radius-full);
+  color: var(--nx-text-muted);
+  font-weight: 600;
+  font-size: var(--nx-fs-sm);
+  cursor: pointer;
+  transition: all var(--nx-t-fast);
+  font-family: var(--nx-font);
+}
+.nx-de-tab:hover {
+  border-color: var(--nx-text-dim);
+  color: var(--nx-text);
+}
+.nx-de-tab.active {
+  background: var(--nx-blue);
+  border-color: var(--nx-blue);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(79,143,255,0.3);
+}
+.nx-de-panel {
+  display: none;
+  animation: fadeIn 0.4s var(--nx-ease);
+}
+.nx-de-panel.active {
+  display: block;
+}
+
+/* ═══════════════════════════════════════
+   SECURITY / PERFORMANCE
+   ═══════════════════════════════════════ */
+.nx-infographic-card {
+  background: var(--nx-surface);
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-radius-md);
+  padding: var(--nx-sp-8);
+  text-align: center;
+  transition: all 0.3s var(--nx-ease);
+}
+.nx-infographic-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--nx-shadow-card-hover);
+}
+
+/* ═══════════════════════════════════════
+   CTA BANNER
+   ═══════════════════════════════════════ */
+.nx-cta-banner {
+  background: var(--nx-gradient-card);
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-radius-xl);
+  padding: var(--nx-sp-16);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.nx-cta-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 30%, rgba(79,143,255,0.06) 0%, transparent 50%),
+              radial-gradient(circle at 70% 70%, rgba(139,92,246,0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — HOME
+   ═══════════════════════════════════════ */
+@media (max-width: 992px) {
+  .nx-hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .nx-hero-content {
+    max-width: 100%;
+  }
+  .nx-hero-subtitle {
+    max-width: 100%;
+  }
+  .nx-hero-actions {
+    justify-content: center;
+  }
+  .nx-hero-visual {
+    order: -1;
+  }
+  .nx-desktop-mockup {
+    max-width: 450px;
+  }
+  .nx-stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .nx-stats-bar .nx-stat {
+    border-right: none;
+  }
+  .nx-stats-bar .nx-stat:nth-child(odd) {
+    border-right: 1px solid var(--nx-border);
+  }
+}
+@media (max-width: 768px) {
+  .nx-hero {
+    min-height: auto;
+    padding: var(--nx-sp-12) 0 var(--nx-sp-8) 0;
+  }
+  .nx-hero-title {
+    font-size: clamp(2rem, 7vw, 3rem);
+  }
+  .nx-desktop-mockup {
+    max-width: 340px;
+  }
+}
+@media (max-width: 480px) {
+  .nx-stats-bar {
+    grid-template-columns: 1fr 1fr;
+  }
+  .nx-hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .nx-hero-actions .btn-primary,
+  .nx-hero-actions .btn-outline,
+  .nx-hero-actions .btn-gradient {
+    width: 100%;
+  }
+}

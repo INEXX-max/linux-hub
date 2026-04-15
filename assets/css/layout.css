@@ -1,0 +1,216 @@
+/* ============================================
+   NEXOS — Layout System
+   Container, Grid, Flex, Spacing, Responsive
+   ============================================ */
+
+/* ── Container ── */
+.container {
+  width: 90%;
+  max-width: var(--nx-container);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--nx-sp-4);
+  padding-right: var(--nx-sp-4);
+}
+.container-sm {
+  max-width: var(--nx-container-sm);
+}
+.container-lg {
+  max-width: var(--nx-container-lg);
+}
+
+/* ── Main Content Area ── */
+main {
+  flex-grow: 1;
+  position: relative;
+}
+
+/* ── Section Spacing ── */
+.nx-section {
+  padding: var(--nx-sp-24) 0;
+  position: relative;
+  overflow: hidden;
+}
+.nx-section-sm {
+  padding: var(--nx-sp-16) 0;
+}
+.nx-section-lg {
+  padding: var(--nx-sp-32) 0;
+}
+
+/* Section divider — subtle gradient line */
+.nx-section + .nx-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(80%, 600px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--nx-border-light), transparent);
+}
+
+/* Alternate section background */
+.nx-section-alt {
+  background: var(--nx-dark);
+}
+
+/* ── Flex Utilities ── */
+.d-flex         { display: flex; }
+.d-inline-flex  { display: inline-flex; }
+.flex-col       { flex-direction: column; }
+.flex-row       { flex-direction: row; }
+.flex-wrap      { flex-wrap: wrap; }
+.flex-1         { flex: 1; }
+.flex-grow      { flex-grow: 1; }
+.flex-shrink-0  { flex-shrink: 0; }
+
+.items-start    { align-items: flex-start; }
+.items-center,
+.align-center   { align-items: center; }
+.items-end      { align-items: flex-end; }
+.items-stretch  { align-items: stretch; }
+
+.justify-start  { justify-content: flex-start; }
+.justify-center { justify-content: center; }
+.justify-end    { justify-content: flex-end; }
+.justify-between,
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+
+.self-center    { align-self: center; }
+
+/* ── Gap ── */
+.gap-1  { gap: var(--nx-sp-1); }
+.gap-2  { gap: var(--nx-sp-2); }
+.gap-3  { gap: var(--nx-sp-3); }
+.gap-4  { gap: var(--nx-sp-4); }
+.gap-5  { gap: var(--nx-sp-5); }
+.gap-6  { gap: var(--nx-sp-6); }
+.gap-8  { gap: var(--nx-sp-8); }
+.gap-10 { gap: var(--nx-sp-10); }
+.gap-12 { gap: var(--nx-sp-12); }
+
+/* ── Grid ── */
+.grid      { display: grid; }
+.grid-2    { grid-template-columns: repeat(2, 1fr); }
+.grid-3    { grid-template-columns: repeat(3, 1fr); }
+.grid-4    { grid-template-columns: repeat(4, 1fr); }
+.grid-auto { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.grid-auto-sm { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+
+/* ── Margin ── */
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--nx-sp-1); }
+.mt-2 { margin-top: var(--nx-sp-2); }
+.mt-3 { margin-top: var(--nx-sp-3); }
+.mt-4 { margin-top: var(--nx-sp-4); }
+.mt-5 { margin-top: var(--nx-sp-5); }
+.mt-6 { margin-top: var(--nx-sp-6); }
+.mt-8 { margin-top: var(--nx-sp-8); }
+.mt-10 { margin-top: var(--nx-sp-10); }
+.mt-12 { margin-top: var(--nx-sp-12); }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--nx-sp-1); }
+.mb-2 { margin-bottom: var(--nx-sp-2); }
+.mb-3 { margin-bottom: var(--nx-sp-3); }
+.mb-4 { margin-bottom: var(--nx-sp-4); }
+.mb-5 { margin-bottom: var(--nx-sp-5); }
+.mb-6 { margin-bottom: var(--nx-sp-6); }
+.mb-8 { margin-bottom: var(--nx-sp-8); }
+.mb-10 { margin-bottom: var(--nx-sp-10); }
+.mb-12 { margin-bottom: var(--nx-sp-12); }
+
+.ml-auto { margin-left: auto; }
+.mr-auto { margin-right: auto; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+/* ── Padding ── */
+.p-0  { padding: 0; }
+.p-4  { padding: var(--nx-sp-4); }
+.p-6  { padding: var(--nx-sp-6); }
+.p-8  { padding: var(--nx-sp-8); }
+.p-10 { padding: var(--nx-sp-10); }
+.p-12 { padding: var(--nx-sp-12); }
+
+.px-4 { padding-left: var(--nx-sp-4); padding-right: var(--nx-sp-4); }
+.px-6 { padding-left: var(--nx-sp-6); padding-right: var(--nx-sp-6); }
+.py-4 { padding-top: var(--nx-sp-4); padding-bottom: var(--nx-sp-4); }
+.py-6 { padding-top: var(--nx-sp-6); padding-bottom: var(--nx-sp-6); }
+.py-8 { padding-top: var(--nx-sp-8); padding-bottom: var(--nx-sp-8); }
+
+/* ── Text Alignment ── */
+.text-left   { text-align: left; }
+.text-center { text-align: center; }
+.text-right  { text-align: right; }
+
+/* ── Width ── */
+.w-full  { width: 100%; }
+.w-auto  { width: auto; }
+.max-w-sm  { max-width: 480px; }
+.max-w-md  { max-width: 640px; }
+.max-w-lg  { max-width: 800px; }
+.max-w-xl  { max-width: 960px; }
+
+/* ── Display ── */
+.block        { display: block; }
+.inline-block { display: inline-block; }
+.hidden       { display: none; }
+
+/* ── Position ── */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.sticky   { position: sticky; }
+
+/* ── Overflow ── */
+.overflow-hidden { overflow: hidden; }
+.overflow-auto   { overflow: auto; }
+
+/* ── Text Colors ── */
+.text-white    { color: #fff; }
+.text-primary  { color: var(--nx-blue); }
+.text-accent   { color: var(--nx-green); }
+.text-cyan     { color: var(--nx-cyan); }
+.text-purple   { color: var(--nx-purple); }
+.text-amber    { color: var(--nx-amber); }
+.text-red      { color: var(--nx-red); }
+.text-pink     { color: var(--nx-pink); }
+.text-muted    { color: var(--nx-text-muted); }
+.text-soft     { color: var(--nx-text-soft); }
+.text-dim      { color: var(--nx-text-dim); }
+
+/* ── Font Weight ── */
+.font-light    { font-weight: 300; }
+.font-normal   { font-weight: 400; }
+.font-medium   { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold     { font-weight: 700; }
+.font-black    { font-weight: 800; }
+
+/* ── Responsive ── */
+@media (max-width: 1200px) {
+  .grid-4 { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 992px) {
+  .grid-3,
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .nx-section { padding: var(--nx-sp-16) 0; }
+  .md-flex-col { flex-direction: column; }
+  .md-hidden   { display: none; }
+}
+@media (max-width: 768px) {
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .grid-auto { grid-template-columns: 1fr; }
+  .nx-section { padding: var(--nx-sp-12) 0; }
+  .sm-flex-col { flex-direction: column; }
+  .sm-text-center { text-align: center; }
+  .sm-hidden { display: none; }
+  .container { width: 92%; }
+}
+@media (max-width: 480px) {
+  .grid-auto-sm { grid-template-columns: 1fr; }
+  .xs-hidden { display: none; }
+}

@@ -1,0 +1,170 @@
+/* ============================================
+   NEXOS — Base Styles
+   Reset, Typography, Scrollbar, Selections
+   ============================================ */
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--nx-font);
+  font-size: var(--nx-fs-base);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--nx-text);
+  background-color: var(--nx-black);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--nx-black);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--nx-surface-3);
+  border-radius: 4px;
+  border: 2px solid var(--nx-black);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--nx-blue);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--nx-surface-3) var(--nx-black);
+}
+
+/* ── Selection ── */
+::selection {
+  background: rgba(79, 143, 255, 0.30);
+  color: #fff;
+}
+::-moz-selection {
+  background: rgba(79, 143, 255, 0.30);
+  color: #fff;
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: var(--nx-sp-4);
+  letter-spacing: -0.02em;
+}
+h1 { font-size: var(--nx-fs-4xl); font-weight: 800; }
+h2 { font-size: var(--nx-fs-3xl); }
+h3 { font-size: var(--nx-fs-2xl); }
+h4 { font-size: var(--nx-fs-xl);  }
+h5 { font-size: var(--nx-fs-lg);  }
+h6 { font-size: var(--nx-fs-md);  }
+
+p {
+  color: var(--nx-text-soft);
+  margin-bottom: var(--nx-sp-4);
+  line-height: 1.7;
+}
+
+/* ── Links ── */
+a {
+  color: var(--nx-blue);
+  text-decoration: none;
+  transition: color var(--nx-t-fast);
+}
+a:hover {
+  color: var(--nx-cyan);
+}
+
+/* ── Lists ── */
+ul, ol {
+  padding-left: var(--nx-sp-6);
+}
+li {
+  margin-bottom: var(--nx-sp-2);
+}
+
+/* ── Code ── */
+code, pre, kbd {
+  font-family: var(--nx-font-mono);
+}
+code {
+  font-size: 0.9em;
+  background: rgba(79, 143, 255, 0.10);
+  color: var(--nx-cyan);
+  padding: 2px 6px;
+  border-radius: var(--nx-radius-xs);
+  border: 1px solid rgba(79, 143, 255, 0.15);
+}
+pre {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-radius-md);
+  padding: var(--nx-sp-6);
+  overflow-x: auto;
+  font-size: var(--nx-fs-sm);
+  line-height: 1.6;
+}
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* ── Images ── */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Strong / Bold ── */
+strong, b {
+  font-weight: 600;
+  color: var(--nx-text);
+}
+
+/* ── Horizontal Rule ── */
+hr {
+  border: none;
+  height: 1px;
+  background: var(--nx-border);
+  margin: var(--nx-sp-8) 0;
+}
+
+/* ── Focus ── */
+:focus-visible {
+  outline: 2px solid var(--nx-blue);
+  outline-offset: 2px;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

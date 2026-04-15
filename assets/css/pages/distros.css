@@ -1,0 +1,240 @@
+/* ============================================
+   NEXOS — Distros Page Styles
+   List, Detail, Cards, Score Bars
+   ============================================ */
+
+/* ═══════════════════════════════════════
+   DISTRO GRID
+   ═══════════════════════════════════════ */
+.nx-distro-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--nx-sp-6);
+}
+.nx-distro-card {
+  background: var(--nx-surface);
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-radius-md);
+  padding: var(--nx-sp-6);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s var(--nx-ease);
+  position: relative;
+  overflow: hidden;
+}
+.nx-distro-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent 40%, var(--nx-blue) 50%, var(--nx-cyan) 60%, transparent 70%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.nx-distro-card:hover::before {
+  opacity: 1;
+}
+.nx-distro-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--nx-shadow-card-hover);
+}
+.nx-distro-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--nx-sp-4);
+}
+.nx-distro-card-header h3 {
+  font-size: var(--nx-fs-xl);
+  margin-bottom: 0;
+}
+.nx-distro-card-desc {
+  font-size: var(--nx-fs-sm);
+  color: var(--nx-text-muted);
+  line-height: 1.6;
+  flex-grow: 1;
+  margin-bottom: var(--nx-sp-4);
+  padding-bottom: var(--nx-sp-4);
+  border-bottom: 1px solid var(--nx-border);
+}
+.nx-distro-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nx-sp-2);
+  margin-bottom: var(--nx-sp-5);
+  font-size: var(--nx-fs-sm);
+  flex-grow: 1;
+}
+.nx-distro-card-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nx-distro-card-meta-row .label {
+  color: var(--nx-text-muted);
+}
+.nx-distro-card-meta-row .value {
+  font-weight: 600;
+  color: var(--nx-text);
+}
+
+/* ═══════════════════════════════════════
+   SEARCH BOX
+   ═══════════════════════════════════════ */
+.nx-search-box {
+  position: relative;
+  max-width: 540px;
+  margin: 0 auto var(--nx-sp-10) auto;
+}
+.nx-search-box input {
+  width: 100%;
+  padding: 16px 20px 16px 50px;
+  background: var(--nx-surface);
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-radius-full);
+  color: #fff;
+  font-family: var(--nx-font);
+  font-size: var(--nx-fs-base);
+  transition: all var(--nx-t-fast);
+}
+.nx-search-box input:focus {
+  outline: none;
+  border-color: var(--nx-blue);
+  box-shadow: 0 0 0 3px var(--nx-blue-glow);
+}
+.nx-search-box input::placeholder {
+  color: var(--nx-text-dim);
+}
+.nx-search-box i {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--nx-text-dim);
+  font-size: 1rem;
+}
+
+/* ═══════════════════════════════════════
+   DISTRO DETAIL
+   ═══════════════════════════════════════ */
+.nx-detail-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--nx-sp-10);
+  align-items: start;
+}
+.nx-detail-header {
+  background: var(--nx-surface);
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-radius-lg);
+  padding: var(--nx-sp-8);
+  border-top: 4px solid var(--nx-blue);
+}
+.nx-detail-header h1 {
+  font-size: var(--nx-fs-4xl);
+  margin-bottom: var(--nx-sp-2);
+}
+
+/* Score bars */
+.nx-score-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nx-sp-5);
+}
+.nx-score-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nx-sp-2);
+}
+.nx-score-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--nx-fs-sm);
+  font-weight: 600;
+}
+.nx-score-label .name {
+  color: var(--nx-text);
+}
+.nx-score-label .val {
+  color: var(--nx-text-muted);
+}
+.nx-score-bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--nx-radius-full);
+  overflow: hidden;
+}
+.nx-score-fill {
+  height: 100%;
+  border-radius: var(--nx-radius-full);
+  transition: width 1.2s var(--nx-ease);
+  position: relative;
+}
+.nx-score-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shimmer 2.5s infinite;
+}
+
+/* Sidebar identity card */
+.nx-identity-card {
+  background: var(--nx-surface);
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-radius-lg);
+  padding: var(--nx-sp-8);
+  position: sticky;
+  top: 90px;
+}
+.nx-identity-card h3 {
+  font-size: var(--nx-fs-lg);
+  color: var(--nx-blue);
+  margin-bottom: var(--nx-sp-6);
+}
+.nx-identity-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nx-sp-5);
+}
+.nx-identity-list li .meta-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--nx-fs-xs);
+  color: var(--nx-text-muted);
+  margin-bottom: var(--nx-sp-1);
+}
+.nx-identity-list li .meta-label i {
+  color: var(--nx-cyan);
+  width: 16px;
+}
+.nx-identity-list li .meta-value {
+  font-weight: 600;
+  font-size: var(--nx-fs-md);
+  padding-left: 24px;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — DISTROS
+   ═══════════════════════════════════════ */
+@media (max-width: 992px) {
+  .nx-detail-layout {
+    grid-template-columns: 1fr;
+  }
+  .nx-identity-card {
+    position: static;
+  }
+}
+@media (max-width: 768px) {
+  .nx-distro-grid {
+    grid-template-columns: 1fr;
+  }
+}
