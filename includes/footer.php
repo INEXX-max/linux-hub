@@ -41,8 +41,8 @@
             </div>
         </div>
         <div class="nx-footer-bottom">
-            <p>&copy; <?= date("Y") ?> INEXX INTERACTIVE. All Rights Reserved.</p>
-            <p style="margin-top:6px; font-size:0.65rem; color:var(--nx-text-dim); letter-spacing:2px; text-transform:uppercase;">This product INEXX INTERACTIVE</p>
+            <p>&copy; <?= date("Y") ?> <a href="https://inexxinteractive.com" target="_blank" style="color:var(--nx-blue); font-weight:700;">INEXX INTERACTIVE</a>. All Rights Reserved.</p>
+            <p style="margin-top:6px; font-size:0.65rem; color:var(--nx-text-dim); letter-spacing:2px; text-transform:uppercase;">This product <a href="https://inexxinteractive.com" target="_blank" style="color:var(--nx-text-muted); text-decoration:none;">INEXX INTERACTIVE</a></p>
         </div>
     </div>
 </footer>

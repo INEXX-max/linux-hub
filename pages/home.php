@@ -51,7 +51,47 @@ global $linux_distros;
 </section>
 
 <!-- ═══════════════════════════════════════
-     SECTION 2: STATS BAR
+     SECTION 2: KAYAN BANT — ŞIRKETLER
+     ═══════════════════════════════════════ -->
+<section class="nx-section-sm" style="overflow:hidden;">
+    <div class="container">
+        <div class="text-center mb-8 reveal">
+            <p style="font-size:var(--nx-fs-sm); color:var(--nx-text-dim); text-transform:uppercase; letter-spacing:3px; font-weight:600;">Dunyayi Yoneten Sistemlerin Arkasinda</p>
+        </div>
+    </div>
+    <div class="nx-marquee">
+        <div class="nx-marquee-track">
+            <?php
+            $logos = [
+                ['name' => 'Google', 'icon' => 'fa-brands fa-google', 'color' => '#4285f4', 'info' => 'Android + tum altyapi'],
+                ['name' => 'Amazon', 'icon' => 'fa-brands fa-aws', 'color' => '#ff9900', 'info' => 'AWS — en buyuk bulut saglayici'],
+                ['name' => 'Meta', 'icon' => 'fa-brands fa-meta', 'color' => '#0668e1', 'info' => 'Milyarlarca kullanicinin altyapisi'],
+                ['name' => 'Apple', 'icon' => 'fa-brands fa-apple', 'color' => '#a2aaad', 'info' => 'macOS cekirdegi BSD tabanli'],
+                ['name' => 'Microsoft', 'icon' => 'fa-brands fa-microsoft', 'color' => '#00a4ef', 'info' => 'Azure + WSL Linux destegi'],
+                ['name' => 'IBM', 'icon' => 'fa-solid fa-cube', 'color' => '#054ada', 'info' => 'Red Hat satin alimi — $34B'],
+                ['name' => 'Red Hat', 'icon' => 'fa-brands fa-redhat', 'color' => '#ee0000', 'info' => 'Kurumsal Linux lideri'],
+                ['name' => 'Tesla', 'icon' => 'fa-solid fa-car', 'color' => '#cc0000', 'info' => 'Arac bilgisayarlari Linux'],
+                ['name' => 'NASA', 'icon' => 'fa-solid fa-shuttle-space', 'color' => '#fc3d21', 'info' => 'ISS ve Mars gorevleri'],
+                ['name' => 'CERN', 'icon' => 'fa-solid fa-atom', 'color' => '#006cb5', 'info' => 'Buyuk Hadron Carpistiricisi'],
+                ['name' => 'Intel', 'icon' => 'fa-solid fa-microchip', 'color' => '#0071c5', 'info' => 'Kernela en cok katki'],
+                ['name' => 'Oracle', 'icon' => 'fa-solid fa-database', 'color' => '#f80000', 'info' => 'Oracle Linux + veritabanlari'],
+                ['name' => 'Netflix', 'icon' => 'fa-solid fa-film', 'color' => '#e50914', 'info' => 'FreeBSD/Linux CDN altyapisi'],
+                ['name' => 'SpaceX', 'icon' => 'fa-solid fa-rocket', 'color' => '#005288', 'info' => 'Falcon & Dragon Linux kullanir'],
+            ];
+            for($repeat = 0; $repeat < 2; $repeat++):
+                foreach($logos as $l):
+            ?>
+            <div class="nx-marquee-item" title="<?= $l['info'] ?>">
+                <i class="<?= $l['icon'] ?>" style="color:<?= $l['color'] ?>; font-size:1.6rem;"></i>
+                <span><?= $l['name'] ?></span>
+            </div>
+            <?php endforeach; endfor; ?>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 3: STATS BAR
      ═══════════════════════════════════════ -->
 <section class="nx-section-sm nx-section-alt">
     <div class="container">
@@ -110,37 +150,7 @@ global $linux_distros;
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     SECTION 4: BÜYÜK KURULUŞLAR
-     ═══════════════════════════════════════ -->
-<section class="nx-section-sm nx-section-alt">
-    <div class="container">
-        <?php sectionTitle('Güven', 'Dünyanın Devleri Linux Kullanıyor', 'Küresel teknoloji altyapısının kalbinde Linux yer alıyor.'); ?>
 
-        <div class="nx-company-grid reveal">
-            <?php
-            $companies = [
-                ['name' => 'Google', 'info' => 'Android + tüm altyapı'],
-                ['name' => 'Amazon', 'info' => 'AWS — en büyük bulut sağlayıcı'],
-                ['name' => 'Meta', 'info' => 'Milyarlarca kullanıcının altyapısı'],
-                ['name' => 'NASA', 'info' => 'ISS ve Mars görevleri'],
-                ['name' => 'CERN', 'info' => 'Büyük Hadron Çarpıştırıcısı'],
-                ['name' => 'IBM', 'info' => 'Red Hat satın alımı — $34B'],
-                ['name' => 'Intel', 'info' => 'Kernel\'a en çok katkı'],
-                ['name' => 'Oracle', 'info' => 'Oracle Linux + veritabanları'],
-                ['name' => 'Red Hat', 'info' => 'Kurumsal Linux lideri'],
-                ['name' => 'Tesla', 'info' => 'Araç bilgisayarları Linux'],
-            ];
-            foreach ($companies as $c):
-                ?>
-                <div class="nx-company-logo">
-                    <?= $c['name'] ?>
-                    <div class="nx-tooltip"><?= $c['info'] ?></div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
 
 <!-- ═══════════════════════════════════════
      SECTION 5: DAĞITIMLAR ÖNİZLEME
