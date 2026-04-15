@@ -1,10 +1,16 @@
 FROM php:8.2-apache
 
-# (Opsiyonel) Gelişmiş routing paketleri veya htaccess kuralları için mod_rewrite açıyoruz
+# NEXOS Platform — Docker Build Configuration
+# Cache-bust: v2.0-nexos
+
+# mod_rewrite modülünü aktif ediyoruz
 RUN a2enmod rewrite
 
 # Çalışma dizinini ayarlayalım
 WORKDIR /var/www/html/
+
+# Eski dosyaları temizleyelim (cache sorununu çözmek için)
+RUN rm -rf /var/www/html/*
 
 # Tüm projeyi kopyalayalım
 COPY . /var/www/html/
