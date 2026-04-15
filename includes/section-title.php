@@ -1,7 +1,7 @@
 <?php
 // includes/section-title.php
-// Reusable section title component
-// Usage: <?php sectionTitle('Label Text', 'Main Title', 'Subtitle text'); ?>
+// Yeniden kullanilabilir section baslik bileseni
+// sectionTitle('Label', 'Baslik', 'Alt baslik') seklinde kullanilir
 
 function sectionTitle($label, $title, $subtitle = '', $id = '') {
     $idAttr = $id ? "id=\"$id\"" : '';
@@ -15,4 +15,3 @@ function sectionTitle($label, $title, $subtitle = '', $id = '') {
     }
     echo "</div>";
 }
-?>
