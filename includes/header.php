@@ -17,11 +17,15 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- NEXOS Design System -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- NEXOS Design System — Direct Imports (no @import) -->
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
 
+    <!-- Page-Specific CSS -->
     <?php
-    // Sayfa bazli CSS
     $pageCss = [
         'home' => 'home', 'what-is-linux' => 'content', 'architecture' => 'content',
         'use_cases' => 'content', 'quiz' => 'content', 'distros' => 'distros',
