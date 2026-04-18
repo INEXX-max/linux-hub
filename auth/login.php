@@ -1,7 +1,7 @@
 <?php
-// auth/login.php — NEXOS Real Login with SQLite
-require_once 'includes/header.php';
+// auth/login.php — Linux.devops Real Login with SQLite
 
+// Redirect ve header islemleri HTML ciktisinden ONCE yapilmali
 if(isLoggedIn()) { redirect('index.php?page=dashboard'); }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])){
@@ -26,6 +26,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])){
         redirect('index.php?page=login');
     }
 }
+
+require_once 'includes/header.php';
 ?>
 
 <div class="nx-auth-wrapper">

@@ -1,13 +1,13 @@
 <?php
-// includes/header.php — NEXOS Global Header
+// includes/header.php — linux.dev Global Header
 ?><!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NEXOS — Modern Linux bilgi platformu. Dagitim karsilastirma, interaktif terminal, quiz ve daha fazlasi.">
+    <meta name="description" content="linux.dev — Modern Linux bilgi platformu. Dagitim karsilastirma, interaktif terminal, quiz ve daha fazlasi.">
     <meta name="theme-color" content="#000000">
-    <title>NEXOS — Linux'un Gucunu Kesfet</title>
+    <title>linux.dev — Linux'un Gucunu Kesfet</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- NEXOS Design System — Direct Imports (no @import) -->
+    <!-- linux.dev Design System — Direct Imports (no @import) -->
     <link rel="stylesheet" href="assets/css/variables.css">
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/layout.css">

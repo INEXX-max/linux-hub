@@ -1,5 +1,5 @@
 <?php
-// includes/functions.php — NEXOS Core Functions
+// includes/functions.php — Linux.devops Core Functions
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

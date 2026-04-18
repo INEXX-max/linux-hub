@@ -42,23 +42,26 @@
   letter-spacing: -0.02em;
   flex-shrink: 0;
 }
-.nx-logo-icon {
-  width: 36px;
-  height: 36px;
-  background: var(--nx-gradient-blue);
-  border-radius: var(--nx-radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  color: #fff;
-  box-shadow: 0 2px 12px rgba(79, 143, 255, 0.3);
-}
-.nx-logo-text {
+.nx-logo-mark {
+  font-family: var(--nx-font-mono);
+  font-weight: 800;
+  font-size: 1.3rem;
   background: var(--nx-gradient-blue);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  letter-spacing: -0.05em;
+}
+.nx-logo-text {
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+.nx-logo-dot {
+  color: var(--nx-cyan);
+  -webkit-text-fill-color: var(--nx-cyan);
+  font-weight: 900;
 }
 .nx-nav-links {
   display: flex;

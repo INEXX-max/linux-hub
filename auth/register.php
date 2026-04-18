@@ -1,7 +1,7 @@
 <?php
-// auth/register.php — NEXOS Real Registration with SQLite
-require_once 'includes/header.php';
+// auth/register.php — Linux.devops Real Registration with SQLite
 
+// Redirect ve header islemleri HTML ciktisinden ONCE yapilmali
 if(isLoggedIn()) { redirect('index.php?page=dashboard'); }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])){
@@ -34,6 +34,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])){
         }
     }
 }
+
+require_once 'includes/header.php';
 ?>
 
 <div class="nx-auth-wrapper">

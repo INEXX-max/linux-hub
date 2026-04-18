@@ -19,11 +19,11 @@ global $linux_distros;
             <!-- Left: Content -->
             <div class="nx-hero-content">
                 <div class="nx-hero-label">
-                    <i class="fa-solid fa-rocket"></i> Geleceğin İşletim Sistemi
+                    <i class="fa-solid fa-rocket"></i> Açık Kaynak Gücü
                 </div>
                 <h1 class="nx-hero-title">
-                    Özgürlüğü kodlandığı ve kodlanıldığı sistem<br>
-                    <span class="nx-text-gradient">İşletim Sistemi</span>
+                    Özgürlüğün kodlandığı<br>
+                    <span class="nx-text-gradient">açık kaynak dünyası</span>
                 </h1>
                 <p class="nx-hero-subtitle">
                     Açık kaynak, peerless güvenlik, sınırsız özelleştirme ve dünya genelinde milyonlarca geliştiricinin
@@ -56,7 +56,9 @@ global $linux_distros;
 <section class="nx-section-sm" style="overflow:hidden;">
     <div class="container">
         <div class="text-center mb-8 reveal">
-            <p style="font-size:var(--nx-fs-sm); color:var(--nx-text-dim); text-transform:uppercase; letter-spacing:3px; font-weight:600;">Dunyayi Yoneten Sistemlerin Arkasinda</p>
+            <p
+                style="font-size:var(--nx-fs-sm); color:var(--nx-text-dim); text-transform:uppercase; letter-spacing:3px; font-weight:600;">
+                Dunyayi Yoneten Sistemlerin Arkasinda</p>
         </div>
     </div>
     <div class="nx-marquee">
@@ -78,14 +80,14 @@ global $linux_distros;
                 ['name' => 'Netflix', 'icon' => 'fa-solid fa-film', 'color' => '#e50914', 'info' => 'FreeBSD/Linux CDN altyapisi'],
                 ['name' => 'SpaceX', 'icon' => 'fa-solid fa-rocket', 'color' => '#005288', 'info' => 'Falcon & Dragon Linux kullanir'],
             ];
-            for($repeat = 0; $repeat < 2; $repeat++):
-                foreach($logos as $l):
-            ?>
-            <div class="nx-marquee-item" title="<?= $l['info'] ?>">
-                <i class="<?= $l['icon'] ?>" style="color:<?= $l['color'] ?>; font-size:1.6rem;"></i>
-                <span><?= $l['name'] ?></span>
-            </div>
-            <?php endforeach; endfor; ?>
+            for ($repeat = 0; $repeat < 2; $repeat++):
+                foreach ($logos as $l):
+                    ?>
+                    <div class="nx-marquee-item" title="<?= $l['info'] ?>">
+                        <i class="<?= $l['icon'] ?>" style="color:<?= $l['color'] ?>; font-size:1.6rem;"></i>
+                        <span><?= $l['name'] ?></span>
+                    </div>
+                <?php endforeach; endfor; ?>
         </div>
     </div>
 </section>

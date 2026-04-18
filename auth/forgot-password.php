@@ -1,7 +1,7 @@
 <?php
-// auth/forgot-password.php — NEXOS Password Reset with SQLite
-require_once 'includes/header.php';
+// auth/forgot-password.php — Linux.devops Password Reset with SQLite
 
+// Redirect ve header islemleri HTML ciktisinden ONCE yapilmali
 if(isLoggedIn()) { redirect('index.php?page=dashboard'); }
 
 $showResetForm = false;
@@ -41,6 +41,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['reset_password'])){
         }
     }
 }
+
+require_once 'includes/header.php';
 ?>
 
 <div class="nx-auth-wrapper">

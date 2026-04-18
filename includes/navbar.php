@@ -1,12 +1,12 @@
 <?php
-// includes/navbar.php — NEXOS Transparent Navbar
+// includes/navbar.php — linux.dev Transparent Navbar
 $page = isset($page) ? $page : (isset($_GET['page']) ? $_GET['page'] : 'home');
 ?>
 <nav class="nx-navbar" id="nexosNavbar">
     <div class="container">
         <a href="index.php?page=home" class="nx-logo">
-            <span class="nx-logo-icon"><i class="fa-solid fa-terminal"></i></span>
-            <span class="nx-logo-text">NEXOS</span>
+            <span class="nx-logo-mark">&lt;/&gt;</span>
+            <span class="nx-logo-text">linux<span class="nx-logo-dot">.</span>dev</span>
         </a>
 
         <div class="nx-nav-links" id="navLinks">

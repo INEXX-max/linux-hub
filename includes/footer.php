@@ -1,5 +1,5 @@
 <?php
-// includes/footer.php — NEXOS Footer
+// includes/footer.php — linux.dev Footer
 ?>
 </main>
 
@@ -8,8 +8,8 @@
         <div class="nx-footer-grid">
             <div class="nx-footer-col">
                 <div class="nx-footer-brand">
-                    <span class="nx-logo-icon" style="font-size:1rem;"><i class="fa-solid fa-terminal"></i></span>
-                    <span style="font-weight:800; font-size:var(--nx-fs-lg); letter-spacing:-0.02em;">NEXOS</span>
+                    <span class="nx-logo-mark" style="font-size:1rem;">&lt;/&gt;</span>
+                    <span style="font-weight:800; font-size:var(--nx-fs-lg); letter-spacing:-0.02em;">linux<span class="nx-logo-dot">.</span>dev</span>
                 </div>
                 <p style="font-size:var(--nx-fs-sm); color:var(--nx-text-dim); line-height:1.7; margin-top:var(--nx-sp-4); max-width:280px;">
                     Linux destekli isletim sistemi platformu. Dagitim kesfi, interaktif terminal ve topluluk araclari.

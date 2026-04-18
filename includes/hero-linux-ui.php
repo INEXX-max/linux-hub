@@ -38,7 +38,7 @@
                 <div class="nx-float-window-body" style="background:rgba(0,0,0,0.5);">
                     <div><span style="color:#10b981;">nexos@linux</span>:<span style="color:#4f8fff;">~</span>$ neofetch</div>
                     <div style="color:var(--nx-text-dim); margin:4px 0;">──────────────</div>
-                    <div><span style="color:#4f8fff;">OS</span>: NEXOS Linux 6.8</div>
+                    <div><span style="color:#4f8fff;">OS</span>: linux.dev 6.8</div>
                     <div><span style="color:#4f8fff;">Kernel</span>: 6.8.0-nexos</div>
                     <div><span style="color:#4f8fff;">Shell</span>: zsh 5.9</div>
                     <div><span style="color:#4f8fff;">DE</span>: GNOME 46</div>

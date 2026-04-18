@@ -1,4 +1,4 @@
-// assets/js/terminal.js — NEXOS Interactive Terminal Simulation
+// assets/js/terminal.js — linux.dev Interactive Terminal Simulation
 (function() {
     'use strict';
 
@@ -33,12 +33,12 @@
             '<span style="color:#4f8fff;">      | |\\  ||  ____| |   /   ___) |</span>',
             '<span style="color:#4f8fff;">      |_| \\_||_______||__/   |____/</span>',
             '',
-            '  <span style="color:#4f8fff;">OS</span>: NEXOS Linux 6.8.0',
-            '  <span style="color:#4f8fff;">Host</span>: NEXOS Platform',
+            '  <span style="color:#4f8fff;">OS</span>: linux.dev 6.8.0',
+            '  <span style="color:#4f8fff;">Host</span>: linux.dev Platform',
             '  <span style="color:#4f8fff;">Kernel</span>: 6.8.0-nexos-generic',
             '  <span style="color:#4f8fff;">Shell</span>: zsh 5.9',
             '  <span style="color:#4f8fff;">DE</span>: GNOME 46',
-            '  <span style="color:#4f8fff;">Terminal</span>: NEXOS Web Terminal',
+            '  <span style="color:#4f8fff;">Terminal</span>: linux.dev Web Terminal',
             '  <span style="color:#4f8fff;">CPU</span>: AMD Ryzen 9 7950X',
             '  <span style="color:#4f8fff;">Memory</span>: 4.2 GiB / 32 GiB',
             '',
@@ -61,10 +61,10 @@
             '<span style="color:#f59e0b;">Not: Bu bir simülasyondur 😊</span>'
         ],
         'cat /etc/os-release': [
-            'NAME="NEXOS Linux"',
+            'NAME="linux.dev"',
             'VERSION="6.8.0"',
             'ID=nexos',
-            'PRETTY_NAME="NEXOS Linux 6.8.0"',
+            'PRETTY_NAME="linux.dev 6.8.0"',
             'HOME_URL="https://nexos.dev"',
             'BUG_REPORT_URL="https://github.com/INEXX-max/linux-hub"'
         ],
@@ -182,7 +182,7 @@
         setTimeout(() => {
             const welcomeLines = [
                 '<span style="color:#4f8fff;">╔══════════════════════════════════════════╗</span>',
-                '<span style="color:#4f8fff;">║</span>  NEXOS Linux Terminal v1.0                <span style="color:#4f8fff;">║</span>',
+                '<span style="color:#4f8fff;">║</span>  linux.dev Terminal v1.0              <span style="color:#4f8fff;">║</span>',
                 '<span style="color:#4f8fff;">║</span>  <span style="color:var(--nx-text-muted);">Linux deneyimini interaktif keşfedin</span>    <span style="color:#4f8fff;">║</span>',
                 '<span style="color:#4f8fff;">╚══════════════════════════════════════════╝</span>',
                 '',
