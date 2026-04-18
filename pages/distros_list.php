@@ -46,8 +46,8 @@ global $linux_distros;
                     <span><i class="fa-solid fa-code-branch" style="color:var(--nx-blue); margin-right:4px;"></i> <?= $d['base_os'] ?></span>
                     <span><i class="fa-solid fa-desktop" style="color:var(--nx-purple); margin-right:4px;"></i> <?= $d['desktop_environment'] ?></span>
                 </div>
-                <a href="index.php?page=distro_detail&slug=<?= urlencode($d['slug']) ?>" class="btn-outline btn-sm w-full" style="justify-content:center;">
-                    Incele <i class="fa-solid fa-arrow-right" style="margin-left:6px;"></i>
+                <a href="index.php?page=distro_detail&slug=<?= urlencode($d['slug']) ?>" class="btn-outline btn-sm w-full" style="justify-content:center; position:relative; z-index:2;">
+                    İncele <i class="fa-solid fa-arrow-right" style="margin-left:6px;"></i>
                 </a>
             </div>
             <?php endforeach; ?>

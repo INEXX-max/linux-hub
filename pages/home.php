@@ -187,7 +187,7 @@ global $linux_distros;
                         </div>
                     </div>
                     <a href="index.php?page=distro_detail&slug=<?= urlencode($distro['slug']) ?>" class="btn-outline w-full"
-                        style="justify-content:center;">
+                        style="justify-content:center; position:relative; z-index:2;">
                         Detayları Gör <i class="fa-solid fa-arrow-right" style="margin-left:6px;"></i>
                     </a>
                 </div>
